@@ -19,7 +19,11 @@
         :desc "Center comment"       "c" #'ronisbr/comment-center-align)
        (:prefix ("t" . "text")
         :desc "Right align text"  "r" #'ronisbr/text-right-align
-        :desc "Center text"       "c" #'ronisbr/text-center-align)))
+        :desc "Center text"       "c" #'ronisbr/text-center-align))
+      (:prefix ("l" . "fill")
+       :desc "Copy character"   "c" #'ronisbr/copy-to-end
+       :desc "Fill with char."  "f" #'ronisbr/fill-to-end
+       :desc "Fill entire line" "l" #'ronisbr/fill-line))
 
 (map! :nv "<down>" #'evil-next-visual-line
       :nv "<up>"   #'evil-previous-visual-line)
