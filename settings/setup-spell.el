@@ -5,6 +5,7 @@
 (after! flyspell
   ;; Select default dictionary.
   (setq ispell-dictionary "en_US")
+  (ispell-change-dictionary "en_US")
 
   ;; Function to switch dictionaries.
   (defun ronisbr/flyspell-switch-dictionary ()

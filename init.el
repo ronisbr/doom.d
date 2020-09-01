@@ -49,7 +49,7 @@
        vterm
 
        :checkers
-       (spell +everywhere)
+       (spell +aspell +everywhere +flyspell)
        grammar
        syntax
 
