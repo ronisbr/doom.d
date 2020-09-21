@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Julia documentation with arguments
+# key: jldocargs
+# type: command
+# --
+
+(if yas-selected-text
+  (yas-expand-snippet (ronisbr/julia--create-doc-with-args yas-selected-text)))

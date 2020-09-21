@@ -36,4 +36,5 @@
 (add-load-path! "./local-lisp")
 (require 'comment-align)
 (require 'fill-line)
+(require 'julia-local)
 (require 'text-align)
