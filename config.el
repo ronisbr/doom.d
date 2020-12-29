@@ -11,7 +11,7 @@
 (setenv "LC_ALL" "pt_BR.UTF-8")
 (set-locale-environment "pt_BR.UTF-8")
 
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-gruvbox)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
