@@ -27,7 +27,7 @@
        modeline
        neotree
        ophints
-       unicode
+       ;; unicode
        vc-gutter
        vi-tilde-fringe
        workspaces
