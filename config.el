@@ -3,7 +3,7 @@
 (setq user-full-name "Ronan Arraes Jardim Chagas"
       user-mail-address "ronisbr@gmail.com")
 
-(setq doom-font (font-spec :family "MesloLGMDZ Nerd Font" :size 13))
+(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 13))
 
 ;; Select locale.
 (setenv "LANG" "pt_BR.UTF-8")
@@ -11,7 +11,7 @@
 (setenv "LC_ALL" "pt_BR.UTF-8")
 (set-locale-environment "pt_BR.UTF-8")
 
-(setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'doom-one)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -29,7 +29,6 @@
 (require 'setup-keybindings)
 (require 'setup-neotree)
 (require 'setup-prog-mode)
-(require 'setup-org-mode)
 (require 'setup-spell)
 
 ;; Local functions.

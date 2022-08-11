@@ -17,19 +17,20 @@
 (doom! :input
        :completion
        company
-       ivy
+       vertico
 
        :ui
-       (popup +defaults)
        doom
        doom-dashboard
        hl-todo
+       ligatures
        modeline
        neotree
        ophints
-       ;; unicode
-       vc-gutter
+       (popup +defaults)
+       (vc-gutter +pretty)
        vi-tilde-fringe
+       window-select
        workspaces
 
        :editor
@@ -56,12 +57,17 @@
        :tools
        (eval +overlay)
        lookup
+       lsp
        magit
 
+       :os
+       (:if IS-MAC macos)
+       tty
+
        :lang
-       cc
+       (cc +lsp)
        emacs-lisp
-       julia
+       (julia +lsp)
        latex
        markdown
        org
