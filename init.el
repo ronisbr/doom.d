@@ -22,12 +22,14 @@
        :ui
        doom
        doom-dashboard
+       (emoji +github)
        hl-todo
+       indent-guides
        ligatures
        modeline
-       neotree
        ophints
        (popup +defaults)
+       treemacs
        (vc-gutter +pretty)
        vi-tilde-fringe
        window-select
@@ -50,7 +52,7 @@
        vterm
 
        :checkers
-       (spell +aspell +everywhere +flyspell)
+       (spell +everywhere +flyspell)
        grammar
        syntax
 

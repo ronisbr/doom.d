@@ -1,6 +1,6 @@
-;;; ~/.doom.d/settings/setup-neotree.el -*- lexical-binding: t; -*-
+;;; ~/.doom.d/settings/setup-treeemacs.el -*- lexical-binding: t; -*-
 ;;
-;; Configurations for neotree.
+;; Configurations for treemacs.
 
 (setq neo-smart-open t)
 
