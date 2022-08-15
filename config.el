@@ -28,6 +28,7 @@
 (require 'setup-emojify)
 (require 'setup-evil)
 (require 'setup-keybindings)
+(require 'setup-julia-mode)
 (require 'setup-prog-mode)
 (require 'setup-spell)
 
