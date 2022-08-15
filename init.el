@@ -54,7 +54,6 @@
        :checkers
        (spell +everywhere +flyspell)
        grammar
-       syntax
 
        :tools
        (eval +overlay)
