@@ -60,6 +60,7 @@
        lookup
        lsp
        magit
+       pdf
 
        :os
        (:if IS-MAC macos)

@@ -29,8 +29,10 @@
 (require 'setup-evil)
 (require 'setup-keybindings)
 (require 'setup-julia-mode)
+(require 'setup-menu-bar)
 (require 'setup-prog-mode)
 (require 'setup-spell)
+(require 'setup-treemacs)
 
 ;; Local functions.
 (add-load-path! "./local-lisp")
@@ -38,6 +40,3 @@
 (require 'fill-line)
 (require 'julia-local)
 (require 'text-align)
-
-(setq treemacs-follow-after-init t)
-(setq treemacs-use-follow-mode t)
