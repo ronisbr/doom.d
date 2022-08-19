@@ -73,7 +73,7 @@
        (julia +lsp)
        latex
        markdown
-       org
+       (org +pretty)
        python
        qt
        sh
