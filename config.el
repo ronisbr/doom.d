@@ -30,6 +30,7 @@
 ;; Custom settings.
 (add-load-path! "./settings")
 (require 'setup-auctex)
+(require 'setup-company)
 (require 'setup-emojify)
 (require 'setup-evil)
 (require 'setup-keybindings)
