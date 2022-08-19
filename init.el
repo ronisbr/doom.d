@@ -41,6 +41,7 @@
        fold
        multiple-cursors
        snippets
+       word-wrap
 
        :emacs
        dired
