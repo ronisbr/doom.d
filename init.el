@@ -49,10 +49,10 @@
        vc
 
        :term
-       vterm
+       ;; vterm
 
        :checkers
-       (spell +everywhere +flyspell)
+       (spell +everywhere +flyspell +hunspell)
        grammar
 
        :tools

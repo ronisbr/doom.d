@@ -5,6 +5,11 @@
 
 (setq doom-font (font-spec :family "FiraCode Nerd Font" :size 13))
 
+;; For some reason, when using emacs-plus, the greek fonts changes for lines
+;; that are not selected when starting Julia mode.
+(add-hook! 'after-setting-font-hook
+  (set-fontset-font t 'greek "FiraCode Nerd Font"))
+
 ;; Select locale.
 (setenv "LANG" "pt_BR.UTF-8")
 (setenv "LC_CTYPE" "pt_BR.UTF-8")
