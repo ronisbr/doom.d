@@ -50,7 +50,7 @@
        vc
 
        :term
-       ;; vterm
+       vterm
 
        :checkers
        (spell +everywhere +flyspell +hunspell)
