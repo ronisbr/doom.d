@@ -5,14 +5,31 @@
 ;; Automatically indent the code when typing `end`.
 (set-electric! 'julia-mode :words '("end"))
 
-;; In Julia, long numbers can be represented with an underscode.
-;; (after! julia-mode
-;;   (puthash 'julia-mode
-;;            (rx (and symbol-start
-;;                     (? "-")
-;;                     (+ digit)
-;;                     (0+ (and "_" (= 3 digit)))
-;;                     symbol-end))
-;;            highlight-numbers-modelist))
+;; Improve Julia number highlight.
+(after! highlight-numbers
+  (puthash 'julia-mode
+           (rx (and symbol-start
+                    (or
+                     ;; Hexadecimal number.
+                     (and "0x"
+                          (+ hex-digit)
+                          (0+ (and "_"
+                                   (+ hex-digit))))
+                     ;; Binary number.
+                     (and "0b"
+                          (+ (any "01"))
+                          (0+ (and "_"
+                                   (+ (any "01")))))
+                     ;; Decimal number.
+                     (and (+ digit)
+                          (0+ (and "_"
+                                   (+ digit)))
+                          (? (and "."
+                                  (* digit)
+                                  (0+ (and "_" (+ digit)))))
+                          (? (and (any "eE")
+                                  (? (any "-+"))
+                                  (+ digit)))))))
+           highlight-numbers-modelist))
 
 (provide 'setup-julia-mode)
