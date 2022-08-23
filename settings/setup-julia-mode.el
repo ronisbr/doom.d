@@ -29,7 +29,8 @@
                                   (0+ (and "_" (+ digit)))))
                           (? (and (any "eE")
                                   (? (any "-+"))
-                                  (+ digit)))))))
+                                  (+ digit)))))
+                    symbol-end))
            highlight-numbers-modelist))
 
 (provide 'setup-julia-mode)
