@@ -2,6 +2,11 @@
 ;;
 ;; Configuration for vterm.
 
+;; Improve speed when using in terminal.
+;;     Ref: https://www.reddit.com/r/emacs/comments/pjtm91/vterm_a_little_bit_slow/
+(after! vterm
+  (setq vterm-timer-delay 0.01))
+
 (defun vterm--send-C-d ()
   "Send <C-d> to vterm."
   (interactive)
