@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 ;; =============================================================================
 ;; julia-local.el
 ;;
@@ -7,6 +8,50 @@
 
 ;; Functions related to snippets
 ;; =============================================================================
+
+;; This function transforms, for example:
+;;
+;; function test(a,
+;;               b,
+;;               c)
+;;
+;; into
+;;
+;; test(a, b, c)
+;;
+;; and
+;;
+;; macro test(a,
+;;            b,
+;;            c)
+;;
+;; into
+;;
+;;     @test(a, b, c)
+
+(defun ronisbr/julia--decl-for-doc (str)
+  "Create the documentation string of a function/macro in `str`."
+
+  ;; `ret` will store the text to be returned.
+  (let ((ret ""))
+
+    ;; Everything must be in one line.
+    (let* ((aux1 (replace-regexp-in-string "\n[\s]*" " " str))
+           (aux2 (replace-regexp-in-string "\s)" ")" aux1))
+           (tmp  (replace-regexp-in-string "(\s" "(" aux2)))
+
+        ;; Check if the declaration is a function.
+        (if (string-prefix-p "function" tmp)
+            (setq ret (concat ret (string-trim (substring tmp 8 nil))))
+
+          ;; Check if the declaration is a macro.
+          (if (string-prefix-p "macro" tmp)
+              (progn
+                (setq ret (concat ret "@"))
+                (setq ret (concat ret (string-trim (substring tmp 5 nil)))))
+
+            ;; It is neither a function nor a macro.
+            (setq ret (concat ret (string-trim tmp))))))))
 
 ;; This function creates the documentation of a function or macro with the
 ;; arguments. It converts:
@@ -38,49 +83,7 @@
     ;; Get the function declaration for the documentation.
     (setq ret (concat ret
                       (ronisbr/julia--decl-for-doc str)
-                      "\n\n$1\n\n\"\"\"\n" str "$0"))))
-
-;; This function transforms, for example:
-;;
-;; function test(a,
-;;               b,
-;;               c)
-;;
-;; into
-;;
-;; test(a, b, c)
-;;
-;; and
-;;
-;; macro test(a,
-;;            b,
-;;            c)
-;;
-;; into
-;;
-;;     @test(a, b, c)
-
-(defun ronisbr/julia--decl-for-doc (str)
-  "Create the documentation string of a function/macro in `str`."
-
-  ;; `ret` will store the text to be returned.
-  (let ((ret ""))
-
-    ;; Everything must be in one line.
-    (let ((tmp (replace-regexp-in-string "\n[\s]*" " " str)))
-
-      ;; Check if the declaration is a function.
-      (if (string-prefix-p "function" tmp)
-          (setq ret (concat ret (string-trim (substring tmp 8 nil))))
-
-        ;; Check if the declaration is a macro.
-        (if (string-prefix-p "macro" tmp)
-            (progn
-              (setq ret (concat ret "@"))
-              (setq ret (concat ret (string-trim (substring tmp 5 nil)))))
-
-          ;; It is neither a function nor a macro.
-          (setq ret (concat ret (string-trim tmp))))))))
+                      "\n\n$1\n\"\"\"\n" str "$0"))))
 
 ;; This function creates the documentation of a function or macro with the
 ;; arguments. It converts:
@@ -132,9 +135,8 @@ includes the arguments."
             (let ((list (split-string args ",")))
               (setq ret (concat ret "# Args\n\n"))
               (while list
-                (let ((arg (string-trim
-                            (replace-regexp-in-string "::.*" "" (car list)))))
-                  (setq ret (concat ret (format "* %s: $%d\n" arg i))))
+                (let ((arg (string-trim (car list))))
+                  (setq ret (concat ret (format "- \\`%s\\`: $%d\n" arg i))))
                 (setq i (+ i 1))
                 (setq list (cdr list)))
               (setq ret (concat ret "\n"))))
