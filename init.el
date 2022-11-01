@@ -88,3 +88,11 @@
 
 ;; Make evil respect visual lines.
 (setq evil-respect-visual-line-mode t)
+
+;; Disable deferred compilation.
+;;
+;;    See: https://github.com/doomemacs/doomemacs/issues/6811
+;;
+(setq native-comp-deferred-compilation nil)
+(after! (doom-packages straight)
+  (setq straight--native-comp-available t))
