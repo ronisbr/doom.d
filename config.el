@@ -28,7 +28,7 @@
 (setq display-line-numbers-type t)
 
 ;; Custom settings.
-(add-load-path! "./settings")
+(add-load-path! "~/.doom.d/settings")
 (require 'setup-auctex)
 (require 'setup-company)
 (require 'setup-emojify)
@@ -42,7 +42,7 @@
 (require 'setup-vterm)
 
 ;; Local functions.
-(add-load-path! "./local-lisp")
+(add-load-path! "~/.doom.d/local-lisp")
 (require 'comment-align)
 (require 'fill-line)
 (require 'julia-local)
