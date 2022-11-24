@@ -1,0 +1,27 @@
+# -*- mode: snippet -*-
+# name: Julia comment section
+# key: jlcsec
+# condition: t
+# --
+
+${1:$(let* ((col (current-column))
+            (str ""))
+       (while (< (length str) (- fill-column col))
+         (setq str (concat str "# ")))
+       (string-trim str))}
+#
+# $1
+${1:$(let* ((col (current-column))
+            (str "# "))
+       (while (< (length str) (- fill-column col))
+            (setq str (concat str "=")))
+       str)}
+#
+#   $2
+#
+${1:$(let* ((col (current-column))
+            (str ""))
+       (while (< (length str) (- fill-column col))
+         (setq str (concat str "# ")))
+       (string-trim str))}
+$0
