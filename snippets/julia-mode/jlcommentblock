@@ -11,7 +11,7 @@ ${1:$(let* ((col (current-column))
        str)}
 ${1:$(let* ((col (current-column))
             (str "#")
-            (pad (ffloor (/ (- fill-column col (string-width yas-text)) 2.0))))
+            (pad (ffloor (/ (- fill-column col (string-width yas-text) 2) 2.0))))
        (while (< (length str) pad)
          (setq str (concat str " ")))
        str)} ${1:comment}
