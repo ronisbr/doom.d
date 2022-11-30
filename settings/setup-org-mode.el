@@ -7,39 +7,67 @@
 ;; =============================================================================
 
 ;; Default directory of Org files.
-(defvar ronisbr/org-directory
-  "~/Nextcloud/org/")
+(defvar ronisbr/org-gtd-directory
+  "~/Nextcloud/org/GTD/")
 
-(defvar ronisbr/org-agenda-directory
-  "~/Nextcloud/org/Agenda/")
-
-;; Journal directory.
-(defvar ronisbr/+org-journal-directory
-  "Diário")
-
-;; TODO file for org-capture.
-(defvar ronisbr/+org-capture-inbox-file
+(defvar ronisbr/+org-gtd-inbox-file
   "Caixa de entrada.org")
 
-;; Wiki directory.
-(defvar ronisbr/+org-wiki-directory
-  "Wiki")
+(defvar ronisbr/+org-gtd-project-file
+  "Projetos.org")
 
-(setq ronisbr/org-capture-inbox-file
-      (expand-file-name ronisbr/+org-capture-inbox-file ronisbr/org-agenda-directory))
-(setq ronisbr/org-journal-directory
-      (expand-file-name ronisbr/+org-journal-directory ronisbr/org-directory))
-(setq ronisbr/org-wiki-directory
-      (expand-file-name ronisbr/+org-wiki-directory ronisbr/org-directory))
+(defvar ronisbr/+org-gtd-someday-file
+  "Algum dia.org")
+
+(defvar ronisbr/+org-gtd-tickler-file
+  "Gaveteiro.org")
+
+(setq ronisbr/org-gtd-inbox-file
+      (expand-file-name ronisbr/+org-gtd-inbox-file ronisbr/org-gtd-directory))
+(setq ronisbr/org-gtd-project-file
+      (expand-file-name ronisbr/+org-gtd-project-file ronisbr/org-gtd-directory))
+(setq ronisbr/org-gtd-someday-file
+      (expand-file-name ronisbr/+org-gtd-someday-file ronisbr/org-gtd-directory))
+(setq ronisbr/org-gtd-tickler-file
+      (expand-file-name ronisbr/+org-gtd-tickler-file ronisbr/org-gtd-directory))
 
 ;; =============================================================================
 ;;                                    Org
 ;; =============================================================================
 
 (after! org
+  (setq org-agenda-files (list ronisbr/org-gtd-inbox-file
+                               ronisbr/org-gtd-project-file
+                               ronisbr/org-gtd-tickler-file))
   (setq org-log-done 'time)
-  (setq org-tags-column +81)
-  (setq org-startup-folded 'content))
+  (setq org-startup-folded 'content)
+  (setq org-tags-column +100)
+  (setq org-todo-keywords
+        '((sequence
+           "TODO(t)"
+           "WAIT(w)"
+           "STRT(s!)"
+           "DLGT(p!)"
+           "|"
+           "DONE(d!)"
+           "CANC(c@)")
+          (sequence
+           "[ ](T)"
+           "[?](W)"
+           "[-](S!)"
+           "[>](P!)"
+           "|"
+           "[✓](D!)"
+           "[!](C@)")))
+  (setq org-todo-keywords-faces
+        '(("WAIT" . +org-todo-onhold)
+          ("STRT" . +org-todo-active)
+          ("DLGT" . +org-todo-active)
+          ("CANC" . +org-todo-cancel)
+          ("[?]"  . +org-todo-onhold)
+          ("[-]"  . +org-todo-active)
+          ("[>]"  . +org-todo-active)
+          ("[!]"  . +org-todo-cancel))))
 
 ;; =============================================================================
 ;;                                 Org agenda
@@ -68,78 +96,29 @@
 
 (after! org
   (setq org-capture-templates
-        (doct `((,(format "%s\tNota" (all-the-icons-faicon "sticky-note" :face 'all-the-icons-green :v-adjust 0.01))
-                 :keys "n"
-                 :file ronisbr/org-capture-inbox-file
-                 :headline "Notas"
-                 :hook (lambda () (ispell-change-dictionary "pt_BR"))
+        (doct `((,(format "%s\tTarefa" (all-the-icons-octicon "inbox" :face 'all-the-icons-green :v-adjust 0.01))
+                 :keys "t"
+                 :file ronisbr/org-gtd-inbox-file
+                 :headline "Tarefas"
                  :prepend t
                  :type entry
-                 :template ("* %?"
-                            "%i %a"))
-                (,(format "%s\tAgendamento" (all-the-icons-octicon "calendar" :face 'all-the-icons-yellow :v-adjust 0.01))
-                 :keys "s"
-                 :file ronisbr/org-capture-inbox-file
-                 :headline "Agendamentos"
-                 :hook (lambda () (ispell-change-dictionary "pt_BR"))
-                 :prepend t
-                 :type entry
-                 :template ("* %?\nSCHEDULED: %^{Início:}t"
+                 :template ("* TODO %?\n:PROPERTIES:\n:CREATED: %U\n:END:"
                             "%i"))
-                (,(format "%s\tAtividade" (all-the-icons-octicon "inbox" :face 'all-the-icons-blue :v-adjust 0.01))
-                 :keys "a"
-                 :file ronisbr/org-capture-inbox-file
-                 :headline "Atividades"
-                 :hook (lambda () (ispell-change-dictionary "pt_BR"))
+                (,(format "%s\tGaveteiro" (all-the-icons-octicon "briefcase" :face 'all-the-icons-yellow :v-adjust 0.01))
+                 :keys "g"
+                 :file ronisbr/org-gtd-tickler-file
+                 :headline "Gaveteiro"
                  :prepend t
                  :type entry
-                 :template ("* TODO %?%{extra}"
-                            "%i")
-                 :children ((,(format "%s\tSem prazo" (all-the-icons-octicon "checklist" :face 'all-the-icons-green :v-adjust 0.01))
-                             :keys "g"
-                             :extra "")
-                            (,(format "%s\tCom prazo" (all-the-icons-material "timer" :face 'all-the-icons-yellow :v-adjust -0.1))
-                             :keys "p"
-                             :extra "\nDEADLINE: %^{Prazo:}t")
-                            (,(format "%s\tCom agendamento" (all-the-icons-octicon "calendar" :face 'all-the-icons-blue :v-adjust 0.01))
-                             :keys "a"
-                             :extra "\nSCHEDULED: %^{Início:}t"
-                             )))))))
+                 :template ("* %?\n%^{Início:}t\n:PROPERTIES:\n:CREATED: %U\n:END:"
+                            "%i"))))))
 
 ;; =============================================================================
-;;                                 Org journal
+;;                                 Org clock
 ;; =============================================================================
 
-(use-package! org-journal
-  :after org
-  :config
-  ;; Journal directory.
-  (setq org-journal-dir ronisbr/org-journal-directory)
-
-  ;; Record journals monthly.
-  (setq org-journal-file-type 'monthly)
-
-  ;; Journal file format.
-  (setq org-journal-file-format "%Y/Diário-%m.org")
-
-  ;; Week starts on Sunday.
-  (setq org-journal-start-on-weekday 0)
-
-  ;; Set date format.
-  (setq org-journal-date-format "%A, %e de %B de %Y (%d/%m/%Y)")
-
-  ;; Header of the journal file.
-  (setq org-journal-file-header
-        "#+TITLE: Diário relativo ao mês %B de %Y.\n\
-#+AUTHOR: Ronan Arraes Jardim Chagas\n\
-#+STARTUP: content\n")
-
-  ;; Hook after an entry is created.
-  (add-hook 'org-journal-after-entry-create-hook
-            (lambda ()
-              ;; Always start in insert mode.
-              (evil-insert-state)
-              ;; The spelling language should be pt_BR.
-              (ispell-change-dictionary "pt_BR"))))
+;; Automatically save the file after clock in and out.
+(add-hook 'org-clock-in-hook #'save-buffer)
+(add-hook 'org-clock-out-hook #'save-buffer)
 
 (provide 'setup-org-mode)

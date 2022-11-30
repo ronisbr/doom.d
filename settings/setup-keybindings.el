@@ -25,7 +25,7 @@
         :desc "Fill with char."  "f" #'ronisbr/fill-to-end
         :desc "Fill entire line" "l" #'ronisbr/fill-line)
        (:prefix ("o" . "open")
-        :desc "Org directory" "o" (lambda () (interactive) (dired ronisbr/org-directory)))))
+        :desc "GTD directory" "g" (lambda () (interactive) (dired ronisbr/org-gtd-directory)))))
 
 (map! :nv "<down>" #'evil-next-visual-line
       :nv "<up>"   #'evil-previous-visual-line)

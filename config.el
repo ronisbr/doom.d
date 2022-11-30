@@ -36,6 +36,7 @@
 (require 'setup-keybindings)
 (require 'setup-julia-mode)
 (require 'setup-menu-bar)
+(require 'setup-org-mode)
 (require 'setup-prog-mode)
 (require 'setup-spell)
 (require 'setup-treemacs)
