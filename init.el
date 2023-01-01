@@ -30,7 +30,7 @@
        ophints
        (popup +defaults)
        treemacs
-       (vc-gutter +pretty)
+       ;; (vc-gutter +pretty)
        vi-tilde-fringe
        window-select
        workspaces
@@ -71,7 +71,7 @@
        :lang
        (cc +lsp)
        emacs-lisp
-       (julia +lsp)
+       ;; (julia +lsp)
        latex
        markdown
        (org +pretty)

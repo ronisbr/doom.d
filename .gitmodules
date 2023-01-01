@@ -1,0 +1,3 @@
+[submodule "local-packages/julia-ts-mode"]
+	path = local-packages/julia-ts-mode
+	url = https://github.com/ronisbr/julia-ts-mode

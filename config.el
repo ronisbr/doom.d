@@ -27,6 +27,12 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
 
+;; Local packages.
+(add-load-path! "~/.doom.d/local-packages/julia-ts-mode")
+(require 'julia-ts-mode)
+(add-load-path! "~/.doom.d/local-packages/lsp-julia")
+(require 'lsp-julia)
+
 ;; Custom settings.
 (add-load-path! "~/.doom.d/settings")
 (require 'setup-auctex)
@@ -34,7 +40,7 @@
 (require 'setup-emojify)
 (require 'setup-evil)
 (require 'setup-keybindings)
-(require 'setup-julia-mode)
+(require 'setup-julia-ts-mode)
 (require 'setup-menu-bar)
 (require 'setup-org-mode)
 (require 'setup-prog-mode)
