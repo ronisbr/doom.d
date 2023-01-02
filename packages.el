@@ -50,3 +50,4 @@
 ;(unpin! t)
 
 (package! doct)
+(package! lsp-julia)

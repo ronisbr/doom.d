@@ -30,8 +30,6 @@
 ;; Local packages.
 (add-load-path! "~/.doom.d/local-packages/julia-ts-mode")
 (require 'julia-ts-mode)
-(add-load-path! "~/.doom.d/local-packages/lsp-julia")
-(require 'lsp-julia)
 
 ;; Custom settings.
 (add-load-path! "~/.doom.d/settings")
