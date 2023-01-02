@@ -14,7 +14,9 @@
                     :multi-root t))
   (setq lsp-julia-default-environment
         (or (car (last (doom-glob "~/.julia/environments/v*")))
-            "~/.julia/environments/v1.6")))
+            "~/.julia/environments/v1.6"))
+  (setq lsp-julia-format-indents nil)
+  (setq lsp-julia-format-kw nil))
 
 ;; Enable LSP by default.
 (add-hook 'julia-ts-mode-hook #'lsp-mode)
