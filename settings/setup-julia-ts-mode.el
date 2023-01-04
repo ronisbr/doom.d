@@ -22,4 +22,12 @@
 (add-hook 'julia-ts-mode-hook #'lsp-mode)
 (add-hook 'julia-ts-mode-hook #'lsp)
 
+;; Electric indent mode.
+(set-electric! 'julia-ts-mode
+  :words '("catch"
+           "else"
+           "elseif"
+           "finally"
+           "end"))
+
 (provide 'setup-julia-ts-mode)
