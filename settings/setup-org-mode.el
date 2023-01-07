@@ -40,6 +40,7 @@
                                ronisbr/org-gtd-project-file
                                ronisbr/org-gtd-tickler-file))
   (setq org-log-done 'time)
+  (setq org-image-actual-width 400)
   (setq org-startup-folded 'content)
   (setq org-tags-column +100)
   (setq org-todo-keywords
@@ -120,5 +121,14 @@
 ;; Automatically save the file after clock in and out.
 (add-hook 'org-clock-in-hook #'save-buffer)
 (add-hook 'org-clock-out-hook #'save-buffer)
+
+;; =============================================================================
+;;                                 Org Roam
+;; =============================================================================
+
+(after! org
+  :config
+  (setq org-roam-directory "~/Nextcloud/org/Roam/")
+  (setq org-roam-dailies-directory "Diário/"))
 
 (provide 'setup-org-mode)

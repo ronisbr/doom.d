@@ -74,7 +74,7 @@
        ;; (julia +lsp)
        latex
        markdown
-       (org +pretty)
+       (org +dragndrop +pretty +roam2)
        python
        qt
        sh
