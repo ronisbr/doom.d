@@ -40,6 +40,7 @@
                                ronisbr/org-gtd-project-file
                                ronisbr/org-gtd-tickler-file))
   (setq org-log-done 'time)
+  (setq org-log-into-drawer "LOGBOOK")
   (setq org-image-actual-width 400)
   (setq org-startup-folded 'content)
   (setq org-tags-column +100)
