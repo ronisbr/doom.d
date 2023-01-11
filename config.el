@@ -3,12 +3,12 @@
 (setq user-full-name "Ronan Arraes Jardim Chagas"
       user-mail-address "ronisbr@gmail.com")
 
-(setq doom-font (font-spec :family "RobotoMono Nerd Font" :size 14))
+(setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 14))
 
 ;; For some reason, when using emacs-plus, the greek fonts changes for lines
 ;; that are not selected when starting Julia mode.
 (add-hook! 'after-setting-font-hook
-  (set-fontset-font t 'greek "RobotoMono Nerd Font"))
+  (set-fontset-font t 'greek "SauceCodePro Nerd Font"))
 
 ;; Select locale.
 (setenv "LANG" "pt_BR.UTF-8")
