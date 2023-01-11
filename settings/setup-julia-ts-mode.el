@@ -22,6 +22,9 @@
 (add-hook 'julia-ts-mode-hook #'lsp-mode)
 (add-hook 'julia-ts-mode-hook #'lsp)
 
+;; Indentation with LSP julia is not very good.
+(setq-hook! 'julia-ts-mode-hook +format-with-lsp nil)
+
 ;; We do not need `highlight-numbers-mode' because everything is handled by
 ;; tree-sitter.
 (add-hook 'julia-ts-mode-hook (lambda () (highlight-numbers-mode -1)))
