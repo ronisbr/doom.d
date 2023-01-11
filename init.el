@@ -27,6 +27,7 @@
        indent-guides
        ligatures
        modeline
+       neotree
        ophints
        (popup +defaults)
        treemacs
