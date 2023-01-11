@@ -22,6 +22,10 @@
 (add-hook 'julia-ts-mode-hook #'lsp-mode)
 (add-hook 'julia-ts-mode-hook #'lsp)
 
+;; We do not need `highlight-numbers-mode' because everything is handled by
+;; tree-sitter.
+(add-hook 'julia-ts-mode-hook (lambda () (highlight-numbers-mode -1)))
+
 ;; YAS snippet expand does not work well with tree-sitter without this
 ;; modification.
 (setq yas-indent-line 'fixed)
