@@ -72,7 +72,7 @@
        :lang
        (cc +lsp)
        emacs-lisp
-       ;; (julia +lsp)
+       (julia +lsp)
        latex
        markdown
        (org +dragndrop +pretty +roam2)
