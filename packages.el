@@ -50,4 +50,5 @@
 ;(unpin! t)
 
 (package! doct)
-(package! lsp-julia)
+(unpin! julia-mode)
+(unpin! julia-repl)
