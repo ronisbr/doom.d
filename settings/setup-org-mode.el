@@ -72,7 +72,7 @@
           ("[!]"  . +org-todo-cancel))))
 
 ;; Se the default dictionary in org-mode to Brazilian Portuguese.
-(add-hook! 'org-mode-hook :append (ispell-change-dictionary "pt_BR"))
+(add-hook! 'org-mode-hook (ispell-change-dictionary "pt_BR"))
 
 ;; =============================================================================
 ;;                                 Org agenda
