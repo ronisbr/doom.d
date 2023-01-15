@@ -17,7 +17,7 @@
 (doom! :input
        :completion
        company
-       vertico
+       (vertico +childframe +icons)
 
        :ui
        doom

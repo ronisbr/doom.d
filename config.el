@@ -48,6 +48,7 @@
 (require 'setup-prog-mode)
 (require 'setup-spell)
 (require 'setup-treemacs)
+(require 'setup-vertico)
 (require 'setup-vterm)
 
 ;; Local functions.
