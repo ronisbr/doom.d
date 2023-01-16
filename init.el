@@ -83,6 +83,7 @@
        :email
 
        :app
+       everywhere
 
        :config
        ;;literate
