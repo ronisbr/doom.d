@@ -50,5 +50,7 @@
 ;(unpin! t)
 
 (package! doct)
+(package! vertico-posframe)
+
 (unpin! julia-mode)
 (unpin! julia-repl)

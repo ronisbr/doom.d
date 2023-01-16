@@ -7,11 +7,20 @@
 ;;                              Vertico-posframe
 ;; =============================================================================
 
-(after! vertico-posframe
-  (setq vertico-posframe-border-width 0)
+(use-package! vertico-posframe
+  :config
   (setq vertico-posframe-parameters
         '((left-fringe . 8)
           (right-fringe . 8)))
-  (setq vertico-posframe-poshandler #'posframe-poshandler-frame-top-center))
+  (setq vertico-posframe-border-width 0)
+  (setq vertico-posframe-poshandler #'posframe-poshandler-frame-top-center)
+
+  (setq vertico-multiform-commands
+      '((consult-line
+         posframe
+         (vertico-posframe-fallback-mode . vertico-buffer-mode))
+        (t posframe)))
+
+  (vertico-multiform-mode 1))
 
 (provide 'setup-vertico)
