@@ -2,6 +2,9 @@
 ;;
 ;; Configurations for Julia mode with tree-sitter support.
 
+(use-package! julia-ts-mode
+  :mode "\\.jl$")
+
 (after! julia-ts-mode
   ;; Enable LSP by default.
   (add-hook 'julia-ts-mode-hook #'lsp-mode)
