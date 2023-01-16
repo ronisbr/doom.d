@@ -31,10 +31,6 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
 
-;; Local packages.
-(add-load-path! "~/.doom.d/local-packages/julia-ts-mode")
-(require 'julia-ts-mode)
-
 ;; Custom settings.
 (add-load-path! "~/.doom.d/settings")
 (require 'setup-auctex)

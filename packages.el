@@ -51,6 +51,9 @@
 
 (package! doct)
 (package! vertico-posframe)
+(package! julia-ts-mode
+  :recipe (:host github
+           :repo "ronisbr/julia-ts-mode"))
 
 (unpin! julia-mode)
 (unpin! julia-repl)
