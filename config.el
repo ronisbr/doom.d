@@ -22,6 +22,13 @@
 (custom-theme-set-faces! '(doom-monokai-classic)
   `(font-lock-variable-name-face :foreground ,(doom-lighten "#9C91E4" 0.45)))
 
+;; Tweak indent-guides for the monokai theme. Otherwise, the guides are barely
+;; visible.
+(after! highlight-indent-guides
+  (setq highlight-indent-guides-auto-odd-face-perc 80)
+  (setq highlight-indent-guides-auto-even-face-perc 80)
+  (setq highlight-indent-guides-auto-character-face-perc 90))
+
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Nextcloud/org"
