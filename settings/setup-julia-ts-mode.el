@@ -25,6 +25,9 @@
              "finally"
              "end")))
 
+;; Re-indent the current line when pressing return.
+(map! :map julia-ts-mode-map :i [remap newline] #'reindent-then-newline-and-indent)
+
 ;; Configure the LSP.
 (use-package! lsp-julia
   :after lsp-mode
