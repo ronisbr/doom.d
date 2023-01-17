@@ -49,7 +49,6 @@
 (require 'setup-evil)
 (require 'setup-keybindings)
 (require 'setup-julia-ts-mode)
-(require 'setup-menu-bar)
 (require 'setup-org-mode)
 (require 'setup-prog-mode)
 (require 'setup-spell)
