@@ -29,6 +29,9 @@
   (setq highlight-indent-guides-auto-even-face-perc 80)
   (setq highlight-indent-guides-auto-character-face-perc 90))
 
+;; Enable smooth scrolling by default.
+(pixel-scroll-precision-mode 1)
+
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Nextcloud/org"
