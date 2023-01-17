@@ -44,6 +44,7 @@
 ;; Custom settings.
 (add-load-path! "~/.doom.d/settings")
 (require 'setup-auctex)
+(require 'setup-centaur-tabs)
 (require 'setup-company)
 (require 'setup-emojify)
 (require 'setup-evil)
