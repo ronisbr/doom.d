@@ -62,7 +62,7 @@
        :tools
        (eval +overlay)
        lookup
-       lsp
+       (lsp +peek)
        magit
        pdf
 
