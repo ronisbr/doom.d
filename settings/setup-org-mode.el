@@ -133,6 +133,10 @@
 (after! org
   :config
   (setq org-roam-directory "~/Nextcloud/org/Roam/")
-  (setq org-roam-dailies-directory "Diário/"))
+  (setq org-roam-dailies-directory "Diário/")
+  (setq org-roam-dailies-capture-templates
+        '(("d" "default"
+           entry "* %U %?"
+           :target (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>")))))
 
 (provide 'setup-org-mode)
