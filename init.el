@@ -49,7 +49,7 @@
        :emacs
        dired
        electric
-       undo
+       (undo +tree)
        vc
 
        :term
