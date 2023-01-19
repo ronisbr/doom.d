@@ -26,6 +26,9 @@
                     :bold nil
                     :foreground "#D7D5D1")
 
-(menu-bar-mode nil)
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+              (lambda (frame)
+                (with-selected-frame frame (menu-bar-mode -1)))))
 
 (provide 'setup-menu-bar)
