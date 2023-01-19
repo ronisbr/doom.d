@@ -16,7 +16,11 @@
 (defun ronisbr/fix-centaur-tabs ()
   (centaur-tabs-mode -1)
   (centaur-tabs-mode)
-  (centaur-tabs-headline-match))
+  (centaur-tabs-headline-match)
+  ;; This function is executed when a new frame is created. In this case, most
+  ;; of time we will be in dashboard. This function ensures that the
+  ;; centaur-tabs are now shown in the dashboard.
+  (centaur-tabs-local-mode))
 
 (if (daemonp)
     (add-hook 'after-make-frame-functions
