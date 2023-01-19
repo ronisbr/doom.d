@@ -39,9 +39,11 @@
   (setq org-agenda-files (list ronisbr/org-gtd-inbox-file
                                ronisbr/org-gtd-project-file
                                ronisbr/org-gtd-tickler-file))
+  (setq org-edit-src-content-indentation 0)
+  (setq org-image-actual-width 400)
   (setq org-log-done 'time)
   (setq org-log-into-drawer "LOGBOOK")
-  (setq org-image-actual-width 400)
+  (setq org-src-preserve-indentation nil)
   (setq org-startup-folded 'content)
   (setq org-tags-column +100)
   (setq org-todo-keywords
