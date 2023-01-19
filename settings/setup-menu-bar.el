@@ -26,6 +26,6 @@
                     :bold nil
                     :foreground "#D7D5D1")
 
-(menu-bar-mode t)
+(menu-bar-mode nil)
 
 (provide 'setup-menu-bar)
