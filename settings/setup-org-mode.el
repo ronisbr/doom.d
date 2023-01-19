@@ -130,13 +130,30 @@
 ;;                                 Org Roam
 ;; =============================================================================
 
-(after! org
+(after! org-roam
   :config
   (setq org-roam-directory "~/Nextcloud/org/Roam/")
   (setq org-roam-dailies-directory "Diário/")
+  (setq org-roam-capture-templates
+        '(("d" "Geral"
+           plain "%?"
+           :target (file+head "Geral/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+           :unnarrowed t)
+          ("n" "Notas"
+           plain "%?"
+           :target (file+head "Notas/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+           :unnarrowed t)
+          ("t" "Trabalho"
+           plain "%?"
+           :target (file+head "Trabalho/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+           :unnarrowed t)))
   (setq org-roam-dailies-capture-templates
         '(("d" "default"
            entry "* %U %?"
-           :target (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>")))))
+           :target (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>"))))
+  (setq org-roam-node-display-template
+        (format "%s ${doom-hierarchy:*} %s"
+                (propertize "${doom-type:10}" 'face 'font-lock-keyword-face)
+                (propertize "${doom-tags:25}" 'face 'org-tag))))
 
 (provide 'setup-org-mode)
