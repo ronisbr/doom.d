@@ -30,4 +30,8 @@
 (map! :nv "<down>" #'evil-next-visual-line
       :nv "<up>"   #'evil-previous-visual-line)
 
+(map! :leader
+      :prefix ("n" . "notes")
+      :desc "Render to HTML" "h" #'ronisbr/render-org-to-html)
+
 (provide 'setup-keybindings)

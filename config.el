@@ -58,9 +58,15 @@
 (require 'setup-vertico)
 (require 'setup-vterm)
 
-;; Local functions.
-(add-load-path! "~/.doom.d/local-lisp")
-(require 'comment-align)
-(require 'fill-line)
-(require 'julia-local)
-(require 'text-align)
+;; Local packages.
+(use-package! comment-align
+  :load-path "~/.doom.d/local-lisp")
+(use-package! fill-line
+  :load-path "~/.doom.d/local-lisp")
+(use-package! julia-local
+  :load-path "~/.doom.d/local-lisp")
+(use-package! render-org-to-html
+  :after org
+  :load-path "~/.doom.d/local-lisp")
+(use-package! text-align
+  :load-path "~/.doom.d/local-lisp")

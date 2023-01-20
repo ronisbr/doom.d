@@ -1,10 +1,4 @@
-;;; -*- lexical-binding: t; -*-
-;; =============================================================================
-;; julia-local.el
-;;
-;;     Local functions for Julia mode.
-;;
-;; =============================================================================
+;;; julia-local.el --- Local functions for Julia mode -*- lexical-binding: t; -*-
 
 ;; Functions related to snippets
 ;; =============================================================================

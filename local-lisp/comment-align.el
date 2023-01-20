@@ -1,10 +1,4 @@
-;; =============================================================================
-;;
-;; comment-align.el
-;;
-;;      Functions to align comments.
-;;
-;; =============================================================================
+;;; comment-align.el --- Functions to align comments -*- lexical-binding: t; -*-
 
 (defun ronisbr/comment-center-align (fill field-size &optional begin end)
   "Align the comments in the region between `begin` and `end` to the center.
