@@ -65,8 +65,13 @@
   :load-path "~/.doom.d/local-lisp")
 (use-package! julia-local
   :load-path "~/.doom.d/local-lisp")
-(use-package! render-org-to-html
-  :after org
-  :load-path "~/.doom.d/local-lisp")
 (use-package! text-align
   :load-path "~/.doom.d/local-lisp")
+
+;; =============================================================================
+;; Local packages
+;; =============================================================================
+
+(use-package! ox-pandoc-html
+  :after org
+  :load-path "~/.doom.d/local-packages/ox-pandoc-html")
