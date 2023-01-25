@@ -31,6 +31,13 @@
 (setq ronisbr/org-gtd-tickler-file
       (expand-file-name ronisbr/+org-gtd-tickler-file ronisbr/org-gtd-directory))
 
+(defun ronisbr/org-export-process-name-tags (s backend info)
+  "Function to process the name tags when exporting.
+
+This function performs the following replacements in the string S:
+- `@(NAME[ SURNAME]) => *NAME[ SURNAME]*'"
+  (replace-regexp-in-string "@(\\(\\(\\w+\\|\\s-\\)+\\))" "*\\1*" s))
+
 ;; =============================================================================
 ;;                                    Org
 ;; =============================================================================
@@ -87,8 +94,12 @@
       1
       (doom-themes--org-tag-face 2)
       prepend))
-   t)
-  )
+   t))
+
+(after! ox
+  ;; Add filter to replace the tags with the names when exporting.
+  (add-to-list 'org-export-filter-body-functions
+               'ronisbr/org-export-process-name-tags))
 
 ;; Se the default dictionary in org-mode to Brazilian Portuguese.
 (add-hook! 'org-mode-hook (ispell-change-dictionary "pt_BR"))
