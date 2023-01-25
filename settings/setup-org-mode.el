@@ -71,7 +71,24 @@
           ("[?]"  . +org-todo-onhold)
           ("[-]"  . +org-todo-active)
           ("[>]"  . +org-todo-active)
-          ("[!]"  . +org-todo-cancel))))
+          ("[!]"  . +org-todo-cancel)))
+
+  ;; Do not use highlight `@' and `#' using Doom's default pattern.
+  (setq doom-themes-org-fontify-special-tags nil)
+
+  ;; This new patters allow accents in `@' and `#' as well as spaces when using
+  ;; with parenthesis.
+  (font-lock-add-keywords
+   'org-mode
+   `((,(rx (or bol space)
+           (group (group (or "#" "@"))
+                  (group (or (one-or-more word)
+                             (and "(" (one-or-more (or word space)) ")")))))
+      1
+      (doom-themes--org-tag-face 2)
+      prepend))
+   t)
+  )
 
 ;; Se the default dictionary in org-mode to Brazilian Portuguese.
 (add-hook! 'org-mode-hook (ispell-change-dictionary "pt_BR"))
