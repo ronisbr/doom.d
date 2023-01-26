@@ -179,7 +179,7 @@ This function performs the following replacements in the string S:
            :unnarrowed t)))
   (setq org-roam-dailies-capture-templates
         '(("d" "default"
-           entry "* %U %?"
+           entry "* %<%H:%M> %?"
            :target (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>"))))
   (setq org-roam-node-display-template
         (format "%s ${doom-hierarchy:*} %s"
