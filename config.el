@@ -3,7 +3,8 @@
 (setq user-full-name "Ronan Arraes Jardim Chagas"
       user-mail-address "ronisbr@gmail.com")
 
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14)
+      doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 14))
 
 ;; For some reason, when using emacs-plus, the greek fonts changes for lines
 ;; that are not selected when starting Julia mode.
