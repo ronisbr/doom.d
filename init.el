@@ -32,7 +32,7 @@
        (popup +defaults)
        tabs
        treemacs
-       ;; (vc-gutter +pretty)
+       (vc-gutter +pretty)
        vi-tilde-fringe
        window-select
        workspaces
