@@ -44,14 +44,14 @@
   :group 'write-mode)
 
 (defcustom write-mode-font-face
-  '(:family "iA Writer Duospace")
+  '(:family "iMWritingDuospace Nerd Font")
   "Font face to be used in the buffer where the write mode is enabled."
   :group 'display
   :type '(plist :tag "Face property list")
   :version "29.1")
 
 (defcustom write-mode-variable-pitch-font-face
-  '(:family "iA Writer Duospace")
+  '(:family "iMWritingDuospace Nerd Font")
   "Variable pitch font face to be used in the buffer where the write mode is enabled."
   :group 'display
   :type '(plist :tag "Face property list")
