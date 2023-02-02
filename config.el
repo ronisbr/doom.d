@@ -56,6 +56,7 @@
 (require 'setup-prog-mode)
 (require 'setup-spell)
 (require 'setup-treemacs)
+(require 'setup-treesit-auto)
 (require 'setup-vertico)
 (require 'setup-vterm)
 
