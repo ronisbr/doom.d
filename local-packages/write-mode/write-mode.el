@@ -50,6 +50,13 @@
   :type '(plist :tag "Face property list")
   :version "29.1")
 
+(defcustom write-mode-variable-pitch-font-face
+  '(:family "iA Writer Duospace")
+  "Variable pitch font face to be used in the buffer where the write mode is enabled."
+  :group 'display
+  :type '(plist :tag "Face property list")
+  :version "29.1")
+
 (defcustom write-mode-theme
   'doom-plain
   "Theme for the write mode."
@@ -57,13 +64,17 @@
   :type 'symbol
   :version "29.1")
 
-(defvar write-mode--default-theme
-  'doom-one
-  "Variable to store the doom theme before setting the write mode.")
-
 (defvar write-mode--default-font
   doom-font
-  "Variable to store the doom font before setting the write mode.")
+  "Variable to store Doom's font before setting the write mode.")
+
+(defvar write-mode--default-theme
+  'doom-one
+  "Variable to store Doom's theme before setting the write mode.")
+
+(defvar write-mode--default-variable-pitch-font
+  doom-variable-pitch-font
+  "Variable to store Doom's variable pitch font before setting the write mode.")
 
 (defvar write-mode--enabled
   nil
@@ -71,26 +82,31 @@
 
 (defun write-mode--enable ()
   "Enable the write mode."
-  (+zen/toggle 1)
-  (setq write-mode--default-font doom-font)
-  (setq write-mode--default-theme doom-theme)
-  (setq doom-font (apply 'font-spec write-mode-font-face))
-  (setq doom-theme 'doom-plain)
+  (setq write-mode--default-font doom-font
+        write-mode--default-theme doom-theme
+        write-mode--default-variable-pitch-font doom-variable-pitch-font
+        doom-font (apply 'font-spec write-mode-font-face)
+        doom-variable-pitch-font (apply 'font-spec write-mode-variable-pitch-font-face)
+        doom-theme 'doom-plain)
 
   (display-line-numbers-mode -1)
   (load-theme doom-theme t)
   (doom/reload-font)
+  (+zen/toggle 1)
+
   (setq write-mode--enabled t))
 
 (defun write-mode--disable ()
   "Disable the write mode"
-  (+zen/toggle -1)
-  (setq doom-theme write-mode--default-theme)
-  (setq doom-font write-mode--default-font)
+  (setq doom-theme write-mode--default-theme
+        doom-variable-pitch-font write-mode--default-variable-pitch-font
+        doom-font write-mode--default-font)
 
-  (display-line-numbers-mode 1)
-  (load-theme doom-theme t)
+  (+zen/toggle -1)
   (doom/reload-font)
+  (load-theme doom-theme t)
+  (display-line-numbers-mode 1)
+
   (setq write-mode--enabled nil))
 
 ;;;###autoload
