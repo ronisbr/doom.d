@@ -76,3 +76,6 @@
 (use-package! ox-pandoc-html
   :after org
   :load-path "~/.doom.d/local-packages/ox-pandoc-html")
+
+(use-package! write-mode
+  :load-path "~/.doom.d/local-packages/write-mode")
