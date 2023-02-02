@@ -9,7 +9,7 @@
         centaur-tabs-set-close-button nil
         centaur-tabs-set-icons t
         centaur-tabs-show-new-tab-button nil
-        centaur-tabs-style "rounded"
+        centaur-tabs-style "alternate"
         x-underline-at-descent-line t)
   (map! "C-S-<right>" #'centaur-tabs-forward)
   (map! "C-S-<left>" #'centaur-tabs-backward))
