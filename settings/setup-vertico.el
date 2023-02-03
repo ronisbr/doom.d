@@ -10,8 +10,8 @@
 (use-package! vertico-posframe
   :config
   (setq vertico-posframe-parameters
-        '((left-fringe . 8)
-          (right-fringe . 8)))
+        '((left-fringe . 10)
+          (right-fringe . 10)))
   (setq vertico-posframe-border-width 0)
   (setq vertico-posframe-poshandler #'posframe-poshandler-frame-top-center)
 
