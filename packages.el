@@ -52,7 +52,6 @@
 (package! doct)
 (package! vertico-posframe)
 (package! treesit-auto)
-(package! nano-modeline)
 (package! julia-ts-mode
   :recipe (:host github
            :repo "ronisbr/julia-ts-mode"))

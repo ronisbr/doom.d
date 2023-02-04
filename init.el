@@ -30,7 +30,7 @@
        neotree
        ophints
        (popup +defaults)
-       tabs
+       ;; tabs
        treemacs
        (vc-gutter +pretty)
        vi-tilde-fringe
