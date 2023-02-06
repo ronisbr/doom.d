@@ -75,7 +75,10 @@
   :options '(turn-on-auto-fill flyspell-mode))
 
 (defcustom doom-nano-modeline-mode-formats
-  '((org-capture-mode :mode-p        doom-nano-modeline--org-capture-mode-p
+  '((magit-status-mode :mode-p doom-nano-modeline--magit-status-mode-p
+                       :format doom-nano-modeline--magit-status-mode)
+
+    (org-capture-mode :mode-p        doom-nano-modeline--org-capture-mode-p
                       :on-activate   doom-nano-modeline--org-capture-mode-on-activate
                       :format        doom-nano-modeline--org-capture-mode
                       :on-inactivate doom-nano-modeline--org-capture-mode-on-inactivate)
@@ -160,6 +163,14 @@
 (defface doom-nano-modeline-major-mode-face
   '((t (:inherit mode-line-emphasis)))
   "Face for the major mode.")
+
+(defface doom-nano-modeline-org-clock-face
+  '((t (:inherit font-lock-builtin-face)))
+  "Face for the org-clock.")
+
+(defface doom-nano-modeline-vc-branch-name-face
+  '((t (:inherit font-lock-comment-face)))
+  "Face for the version control branch name.")
 
 ;; Internal variables.
 (defvar doom-nano-modeline--saved-mode-line-format nil)

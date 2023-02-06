@@ -46,29 +46,47 @@
             (read-only 'read-only)
             (t         'read-write)))))
 
-(defun doom-nano-modeline-buffer-name-and-major-mode ()
+(defun doom-nano-modeline-buffer-name-vc-and-major-mode ()
   "Return the buffer name and the major mode."
-  (let ((buffer-name (cond
-                      ((and (derived-mode-p 'org-mode)
-                            (buffer-narrowed-p)
-                            (buffer-base-buffer))
-                       (format"%s [%s]" (buffer-base-buffer)
-                              (org-link-display-format
-                              (substring-no-properties (or (org-get-heading 'no-tags)
-                                                       "-")))))
-                     ((and (buffer-narrowed-p)
-                            (buffer-base-buffer))
-                       (format"%s [narrow]" (buffer-base-buffer)))
-                      (t
-                       (format-mode-line "%b"))))
+  (let* ((buffer-name (cond
+                       ((and (derived-mode-p 'org-mode)
+                             (buffer-narrowed-p)
+                             (buffer-base-buffer))
+                        (format"%s [%s]" (buffer-base-buffer)
+                               (org-link-display-format
+                                (substring-no-properties (or (org-get-heading 'no-tags)
+                                                             "-")))))
+                       ((and (buffer-narrowed-p)
+                             (buffer-base-buffer))
+                        (format"%s [narrow]" (buffer-base-buffer)))
+                       (t
+                        (format-mode-line "%b"))))
 
-        (buffer-modified (if (and buffer-file-name (buffer-modified-p)) "** " ""))
+         (buffer-modified (if (and buffer-file-name (buffer-modified-p)) "** " ""))
 
-        (mode-name (format-mode-line mode-name)))
+         (mode-name (format-mode-line mode-name))
+
+         (vc-branch-name (doom-nano-modeline--get-vc-branch))
+
+         (vc-branch (if vc-branch-name
+                        `((vc-branch-name . nil))
+                      nil)))
 
     `((,(concat buffer-modified buffer-name) . nil)
       (" " . nil)
+      (,(if vc-branch-name (concat "[" vc-branch-name "]") "") . doom-nano-modeline-vc-branch-name-face)
+      (,(if vc-branch-name " " "") . nil)
       (,(concat "(" mode-name ")") . doom-nano-modeline-major-mode-face))))
+
+(defun doom-nano-modeline-org-clock-timer ()
+  "Return the string with the current task time or nil if there is not an active clock."
+  (when (and (boundp 'org-mode-line-string) (> (length org-mode-line-string) 0))
+    (let* ((str (substring-no-properties org-mode-line-string))
+           (matches (string-match "\\(\\[[^\\]*\\]\\)" str))
+           (time-string (match-string 1 str)))
+      (if time-string
+          `((,time-string . doom-nano-modeline-org-clock-face))
+        nil))))
 
 (defun doom-nano-modeline-org-mode-buffer-name-and-major-mode ()
   "Return the buffer name and the major mode for Org buffers."
@@ -85,6 +103,10 @@
            (,(concat "(" mode-name ")") . doom-nano-modeline-major-mode-face)))
     (doom-nano-modeline-default-mode)))
 
+(defun doom-nano-modeline-cursor-position ()
+  "Return the cursor position in the current buffer."
+  `((,(format-mode-line "%l:%c") . nil)))
+
 (defun doom-nano-modeline--get-org-title ()
   "Get the `+title' property of an org file. If it does not exits, return nil."
   (let ((org-title (org-collect-keywords '("TITLE"))))
@@ -92,16 +114,16 @@
         (car (cdr (car org-title)))
       nil)))
 
-(defun doom-nano-modeline-cursor-position ()
-  "Return the cursor position in the current buffer."
-  `((,(format-mode-line "%l:%c") . nil)))
-
-(defun doom-nano-modeline-vc-branch ()
+(defun doom-nano-modeline--get-vc-branch ()
   "Return current VC branch if any."
   (if vc-mode
       (let ((backend (vc-backend buffer-file-name)))
         (concat "#" (substring-no-properties vc-mode
                                  (+ (if (eq backend 'Hg) 2 3) 2))))  nil))
+
+(defun doom-nano-modeline--space ()
+  "Function to return a space for the modeline render function."
+  `((" " . nil)))
 
 (defun doom-nano-modeline--vterm-set-title-advice (title)
   "Advice to `vterm--set-title' to track the current directory in `default-dir'."

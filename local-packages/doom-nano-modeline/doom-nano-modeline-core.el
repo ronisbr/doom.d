@@ -240,5 +240,4 @@ If HIDE-EVIL-MODE is nil, the Evil mode state is not shown in the modeline."
   "Update selected window."
   (setq doom-nano-modeline--selected-window (selected-window)))
 
-
 (provide 'doom-nano-modeline-core)

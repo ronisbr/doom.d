@@ -42,11 +42,30 @@
 ;; =============================================================================
 
 (defun doom-nano-modeline-default-mode ()
-  (let ((branch (doom-nano-modeline-vc-branch))
-        (position (format-mode-line "%l:%c")))
+  (doom-nano-modeline--render (doom-nano-modeline-buffer-name-vc-and-major-mode)
+                              (append (doom-nano-modeline-cursor-position)
+                                      (doom-nano-modeline--space)
+                                      (doom-nano-modeline-org-clock-timer))))
+
+;; Magit
+;; =============================================================================
+
+(defun doom-nano-modeline--magit-status-mode-p ()
+  "Return t if we are in `magit-status-mode' or nil otherwise."
+  (derived-mode-p 'magit-status-mode))
+
+(defun doom-nano-modeline--magit-status-mode ()
+  "Render the modeline in `magit-status-mode'"
     (doom-nano-modeline--render
-     (doom-nano-modeline-buffer-name-and-major-mode)
-     (doom-nano-modeline-cursor-position))))
+     `(("Magit:" . doom-nano-modeline-major-mode-face)
+       (" " . nil)
+       (,(file-name-nondirectory
+          (directory-file-name
+           (file-name-directory default-directory))) . nil)
+       (" " . nil)
+       (,(concat "[#" (magit-get-current-branch) "]") . doom-nano-modeline-vc-branch-name-face))
+     nil
+     t))
 
 ;; Messages
 ;; =============================================================================
@@ -72,7 +91,9 @@
   "Render the modeline if `org-mode'."
   (doom-nano-modeline--render
    (doom-nano-modeline-org-mode-buffer-name-and-major-mode)
-   (doom-nano-modeline-cursor-position)))
+   (append (doom-nano-modeline-cursor-position)
+           (doom-nano-modeline--space)
+           (doom-nano-modeline-org-clock-timer))))
 
 ;; Org-agenda
 ;; =============================================================================
