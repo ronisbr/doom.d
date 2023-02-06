@@ -26,7 +26,7 @@
        hl-todo
        indent-guides
        ligatures
-       modeline
+       ;; modeline
        neotree
        ophints
        (popup +defaults)

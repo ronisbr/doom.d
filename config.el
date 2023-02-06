@@ -66,3 +66,5 @@
 
 (add-load-path! "~/.doom.d/local-packages/doom-nano-modeline")
 (require 'doom-nano-modeline)
+(doom-nano-modeline-mode 1)
+(global-hide-mode-line-mode 1)
