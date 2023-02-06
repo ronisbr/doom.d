@@ -226,8 +226,15 @@ If HIDE-EVIL-MODE is nil, the Evil mode state is not shown in the modeline."
     (concat pleft
             (propertize " "
                         'face modeline-face
-                        'display `(space :align-to (- right ,pright-length)))
-            pright)))
+                        'display `(space
+                                   :align-to
+                                   (- (+ right right-fringe right-margin scroll-bar)
+                                      ,pright-length 1)))
+            pright
+
+            ;; We have one final space as margin, so we make sure it is
+            ;; highlighted with the correct face.
+            (propertize " " 'face modeline-face))))
 
 (defun doom-nano-modeline--update-selected-window ()
   "Update selected window."
