@@ -80,7 +80,18 @@
 
 (defun doom-nano-modeline-org-clock-timer ()
   "Return the string with the current task time or nil if there is not an active clock."
-  (when (and (boundp 'org-mode-line-string) (> (length org-mode-line-string) 0))
+  ;; We can check if there is an active time by performing the following
+  ;; analysis:
+  ;;
+  ;;    - `org-mode-line-string' exists;
+  ;;    - `org-mode-line-string' length is larger than 0; and
+  ;;    - `org-mode-line-string' is a member of `global-mode-string'.
+  ;;
+  ;; The latter is necessary because Org does not empty `org-mode-line-string'
+  ;; when the user clocks out.
+  (when (and (boundp 'org-mode-line-string)
+             (> (length org-mode-line-string) 0)
+             (member 'org-mode-line-string global-mode-string))
     (let* ((str (substring-no-properties org-mode-line-string))
            (matches (string-match "\\(\\[[^\\]*\\]\\)" str))
            (time-string (match-string 1 str)))
