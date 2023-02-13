@@ -50,7 +50,7 @@
                         (when mode-p
                           (when (funcall mode-p)
                             (throw 'found format))))))
-                  doom-nano-modeline-default-mode-format))))))
+                  #'doom-nano-modeline-default-mode-format))))))
     (if (eq doom-nano-modeline-position 'top)
         (progn
           (setq header-line-format format)
