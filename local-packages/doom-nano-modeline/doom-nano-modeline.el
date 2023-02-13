@@ -79,12 +79,15 @@
                        :format doom-nano-modeline--magit-status-mode)
 
     (org-capture-mode :mode-p        doom-nano-modeline--org-capture-mode-p
-                      :on-activate   doom-nano-modeline--org-capture-mode-on-activate
                       :format        doom-nano-modeline--org-capture-mode
+                      :on-activate   doom-nano-modeline--org-capture-mode-on-activate
                       :on-inactivate doom-nano-modeline--org-capture-mode-on-inactivate)
 
     (org-agenda-mode :mode-p doom-nano-modeline--org-agenda-mode-p
                      :format doom-nano-modeline--org-agenda-mode)
+
+    (org-tags-buffer :mode-p doom-nano-modeline--org-tags-buffer-p
+                     :format doom-nano-modeline--org-tags-buffer)
 
     (org-mode :mode-p doom-nano-modeline--org-mode-p
               :format doom-nano-modeline--org-mode)
@@ -188,6 +191,6 @@
     (doom-nano-modeline-mode--inactivate))
 
   ;; Run any registered hooks
-  (run-hooks 'nano-modeline-mode-hook))
+  (run-hooks 'doom-nano-modeline-mode-hook))
 
 (provide 'doom-nano-modeline)

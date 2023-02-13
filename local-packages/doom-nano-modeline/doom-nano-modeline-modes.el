@@ -138,9 +138,21 @@
               90)))
 
 (defun doom-nano-modeline--org-capture-mode-on-inactivate ()
-  "Remove hooks to `org-capture-mode' related with the doom-nano modeline."
+  "Remove hooks from `org-capture-mode' related with the doom-nano modeline."
   (remove-hook 'org-capture-mode-hook
                #'doom-nano-modeline--org-capture-mode-turn-off-header-line))
+
+;; Org tags
+;; =============================================================================
+
+(defun doom-nano-modeline--org-tags-buffer-p ()
+  "Return t if we are in `fundamental-mode' and the buffer name is *Org tags*."
+  (and (derived-mode-p 'fundamental-mode)
+       (string-match-p "*Org tags*" (buffer-name))))
+
+(defun doom-nano-modeline--org-tags-buffer ()
+  "Render the modeline in `org-tags-buffer'."
+  nil)
 
 ;; Special mode
 ;; =============================================================================
