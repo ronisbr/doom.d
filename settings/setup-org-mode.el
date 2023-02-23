@@ -123,7 +123,12 @@ This function performs the following replacements in the string S:
    org-agenda-time-grid '((daily today remove-match)
                           (0800 1000 1200 1400 1600 1800 2000 2200)
                           "      " "-----------")
-   org-agenda-current-time-string "◀ ----- now"))
+   org-agenda-current-time-string "◀ ----- now")
+
+  ;; Those advice were designed when using a bottom modeline. Since we are using
+  ;; a header line, we must remove them.
+  (advice-remove 'org-fast-tag-selection #'+popup--org-fix-popup-window-shrinking-a)
+  (advice-remove 'org-fast-todo-selection #'+popup--org-fix-popup-window-shrinking-a))
 
 ;; =============================================================================
 ;;                                Org capture
