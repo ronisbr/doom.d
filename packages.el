@@ -50,7 +50,6 @@
 ;(unpin! t)
 
 (package! doct)
-(package! vertico-posframe)
 (package! treesit-auto)
 (package! julia-ts-mode
   :recipe (:host github
