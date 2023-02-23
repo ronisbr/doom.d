@@ -22,9 +22,9 @@
 
 ;; Tweak indent-guides for the monokai theme. Otherwise, the guides are barely
 ;; visible.
-(after! highlight-indent-guides
-  (setq highlight-indent-guides-auto-odd-face-perc 80)
-  (setq highlight-indent-guides-auto-even-face-perc 80)
-  (setq highlight-indent-guides-auto-character-face-perc 90))
+;; (after! highlight-indent-guides
+;;   (setq highlight-indent-guides-auto-odd-face-perc 80)
+;;   (setq highlight-indent-guides-auto-even-face-perc 80)
+;;   (setq highlight-indent-guides-auto-character-face-perc 90))
 
 (provide 'setup-theme)
