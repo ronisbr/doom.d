@@ -116,7 +116,7 @@
 
 (defun doom-nano-modeline-cursor-position ()
   "Return the cursor position in the current buffer."
-  `((,(format-mode-line "%l:%c") . nil)))
+  `((,(format-mode-line "%l:%c") . doom-nano-modeline-cursor-position-face)))
 
 (defun doom-nano-modeline--get-org-title ()
   "Get the `+title' property of an org file. If it does not exits, return nil."

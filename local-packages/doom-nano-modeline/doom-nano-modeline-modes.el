@@ -76,7 +76,7 @@
 
 (defun doom-nano-modeline--messages-buffer-mode ()
     (doom-nano-modeline--render
-     `(("Messages" . nil))
+     `(("Messages" . doom-nano-modeline-major-mode-face))
      nil
      t))
 

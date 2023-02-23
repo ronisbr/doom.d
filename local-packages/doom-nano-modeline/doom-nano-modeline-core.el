@@ -148,8 +148,8 @@ If HIDE-EVIL-MODE is nil, the Evil mode state is not shown in the modeline."
                           ((eq evil-state 'insert)   "I ")
                           ((eq evil-state 'replace)  "R ")
                           ((eq evil-state 'operator) "O ")
-                          ((eq evil-state 'visual) (cond ((eq evil-visual-selection 'line)  "Vl")
-                                                         ((eq evil-visual-selection 'block) "Vb")
+                          ((eq evil-state 'visual) (cond ((eq evil-visual-selection 'line)  "L ")
+                                                         ((eq evil-visual-selection 'block) "B ")
                                                          (t                                 "V ")))
                           (t "? ")))))
 
@@ -179,7 +179,7 @@ If HIDE-EVIL-MODE is nil, the Evil mode state is not shown in the modeline."
          ;; Assemble the left string with the highlights.
          (pleft (concat
                  (propertize " "
-                             'face modeline-face
+                             'face evilstate-face
                              'display `(raise ,doom-nano-modeline-top-padding))
 
                  ;; Evil state.

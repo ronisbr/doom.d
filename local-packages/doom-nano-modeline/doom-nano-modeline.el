@@ -127,6 +127,10 @@
   '((t (:inherit mode-line)))
   "Face used when the modeline is active.")
 
+(defface doom-nano-modeline-cursor-position-face
+  '((t (:inherit font-lock-comment-face)))
+  "Face for the cursor position shown to the right of the mode-line.")
+
 (defface doom-nano-modeline-evil-emacs-state-face
   '((t (:inherit (font-lock-builtin-face bold))))
   "Face for the evil state indicator when in emacs state.")
@@ -156,7 +160,7 @@
   "Face for the evil state indicator when in visual state.")
 
 (defface doom-nano-modeline-inactive-face
-  '((t (:inherit (mode-line-inactive font-lock-comment-face))))
+  '((t (:inherit (font-lock-comment-face mode-line-inactive))))
   "Face used when the modeline is inactive.")
 
 (defface doom-nano-modeline-macro-face
