@@ -93,7 +93,7 @@
              (> (length org-mode-line-string) 0)
              (member 'org-mode-line-string global-mode-string))
     (let* ((str (substring-no-properties org-mode-line-string))
-           (matches (string-match "\\(\\[[^\\]*\\]\\)" str))
+           (matches (string-match "\\(\\[[^]]*\\]\\)" str))
            (time-string (match-string 1 str)))
       (if time-string
           `((,time-string . doom-nano-modeline-org-clock-face))
