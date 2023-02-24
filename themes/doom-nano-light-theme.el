@@ -602,7 +602,7 @@
 
    ;; === Vertico ==============================================================
 
-   (vertico-current         :background nano-highlight :weight 'bold)
+   (vertico-current         :background nano-subtle :weight 'bold)
    (vertico-group-separator :foreground nano-faded)
    (vertico-group-title     :foreground nano-faded)
    (vertico-multiline       :foreground nano-faded)))
