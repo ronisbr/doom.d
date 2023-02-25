@@ -589,15 +589,15 @@
 
    ;; === Structural ===========================================================
 
-   (bold :foreground nano-strong :weight 'bold)
-   (italic :foreground nano-faded :slant 'italic)
-   (bold-italic :foreground nano-strong :weight 'bold)
-   (region :background nano-subtle :distant-foreground 'unspecified)
-   (fringe :foreground nano-faded)
-   (hl-line :background highlight)
-   (link :foreground nano-salient)
-   (fixed-pitch :foreground fg)
+   (bold              :foreground nano-strong :weight 'bold)
+   (bold-italic       :foreground nano-strong :weight 'bold)
+   (fixed-pitch       :foreground fg)
    (fixed-pitch-serif :foreground fg)
+   (fringe            :foreground nano-faded)
+   (hl-line           :background highlight)
+   (italic            :foreground nano-faded :slant 'italic)
+   (link              :foreground nano-salient)
+   (region            :background nano-subtle :distant-foreground 'unspecified)
 
    ;; === Terminal =============================================================
 
