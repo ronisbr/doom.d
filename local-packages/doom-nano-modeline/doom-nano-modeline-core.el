@@ -165,6 +165,7 @@ If HIDE-EVIL-MODE is nil, the Evil mode state is not shown in the modeline."
          (evilstate-face
           (cond (hide-evil-mode            modeline-face)
                 ((not active)              modeline-face)
+                ((eq evil-state 'emacs)    'doom-nano-modeline-evil-emacs-state-face)
                 ((eq evil-state 'normal)   'doom-nano-modeline-evil-normal-state-face)
                 ((eq evil-state 'motion)   'doom-nano-modeline-evil-motion-state-face)
                 ((eq evil-state 'insert)   'doom-nano-modeline-evil-insert-state-face)
