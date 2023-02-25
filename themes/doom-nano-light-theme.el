@@ -122,7 +122,7 @@
    ;; === Base =================================================================
 
    (cursor :foreground bg :background fg)
-   (mouse :foreground fg :background bg)
+   (mouse  :foreground fg :background bg)
 
    ;; === General ==============================================================
 
@@ -576,6 +576,11 @@
    (popup-scroll-bar-foreground-face :foreground nano-subtle)
    (popup-summary-face               :foreground nano-faded)
    (popup-tip-face                   :foreground bg :background nano-popout)
+
+   ;; === Semantics ============================================================
+
+   (match  :foreground nano-popout)
+   (shadow :foreground nano-popout)
 
    ;; === Structural ===========================================================
 
