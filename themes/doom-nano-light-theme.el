@@ -229,6 +229,7 @@
    (doom-nano-modeline-evil-operator-state-face :foreground bg :background nano-faded)
    (doom-nano-modeline-evil-replace-state-face  :foreground bg :background nano-critical)
    (doom-nano-modeline-evil-visual-state-face   :foreground bg :background nano-salient)
+   (doom-nano-modeline-inactive-face            :foreground nano-faded :background nano-highlight)
 
    ;; === Evil mode=============================================================
 
