@@ -625,4 +625,10 @@
    (vertico-current         :background nano-subtle :weight 'bold)
    (vertico-group-separator :foreground nano-faded)
    (vertico-group-title     :foreground nano-faded)
-   (vertico-multiline       :foreground nano-faded)))
+   (vertico-multiline       :foreground nano-faded)
+
+   ;; === Which key ============================================================
+
+   (which-key-command-description-face   :foreground fg)
+   (which-key-key-face                   :foreground nano-strong :weight 'bold)
+   (which-key-key-group-description-face :foreground nano-salient)))
