@@ -54,6 +54,9 @@
 (package! julia-ts-mode
   :recipe (:host github
            :repo "ronisbr/julia-ts-mode"))
+(package! doom-nano-modeline
+  :recipe (:host github
+           :repo "ronisbr/doom-nano-modeline"))
 
 (unpin! julia-mode)
 (unpin! julia-repl)

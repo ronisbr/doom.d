@@ -29,6 +29,7 @@
 ;; Custom settings.
 (require 'setup-auctex)
 (require 'setup-company)
+(require 'setup-doom-nano-modeline)
 (require 'setup-emojify)
 (require 'setup-evil)
 (require 'setup-julia-ts-mode)
@@ -63,8 +64,3 @@
 
 (use-package! write-mode
   :load-path "~/.doom.d/local-packages/write-mode")
-
-(add-load-path! "~/.doom.d/local-packages/doom-nano-modeline")
-(require 'doom-nano-modeline)
-(doom-nano-modeline-mode 1)
-(global-hide-mode-line-mode 1)
