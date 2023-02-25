@@ -181,10 +181,11 @@
 
    ;; === Buttons ==============================================================
 
-   (button                            :foreground nano-faded :background nano-highlight)
-   ((custom-button &override)         :foreground nano-faded :background nano-highlight :box nil)
-   ((custom-button-mouse &override)   :foreground fg :background nano-subtle :box nil)
-   ((custom-button-pressed &override) :foreground bg :background fg :box nil)
+   (button                             :foreground nano-faded :background nano-highlight :box nil)
+   ((custom-button &override)          :foreground nano-faded :background nano-highlight :box nil)
+   ((custom-button-unraised &override) :foreground nano-faded :background nano-highlight :box nil)
+   ((custom-button-mouse &override)    :foreground fg :background nano-subtle :box nil)
+   ((custom-button-pressed &override)  :foreground bg :background fg :box nil)
 
    ;; === Custom edit ==========================================================
 
