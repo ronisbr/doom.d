@@ -147,6 +147,11 @@
    (tooltip                      :background nano-subtle)
    (trailing-whitespace          :background nano-subtle)
 
+   ;; === Ace window ===========================================================
+
+   (aw-leading-char-face :foreground nano-popout)
+   (aw-background-face   :foreground nano-faded :background bg)
+
    ;; === ANSI colors ==========================================================
 
    (ansi-color-black          :foreground fg)
