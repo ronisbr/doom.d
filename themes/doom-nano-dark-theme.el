@@ -261,6 +261,10 @@
 
    (highlight-indent-guides-f)
 
+   ;; === Hydra ================================================================
+
+   (hydra-face-red :foreground nano-popout :weight 'bold)
+
    ;; === Line numbers =========================================================
 
    (line-number :foreground nano-faded)
