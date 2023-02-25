@@ -92,7 +92,7 @@
    (teal           '("#4DB5BD" "#44B9B1" "brightgreen"))
    (violet         '("#B751B6" "#B751B6" "brightmagenta"))
    (white           nano-subtle)
-   (yellow         '("#FFEE58" "#FFEE58" "yellow"))
+   (yellow         '("#E2C12F" "#E2C12F" "yellow"))
 
    (highlight      nano-highlight)
    (vertical-bar   nano-background)
