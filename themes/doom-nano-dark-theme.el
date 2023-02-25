@@ -225,6 +225,11 @@
    (doom-nano-modeline-evil-replace-state-face  :foreground bg :background nano-critical)
    (doom-nano-modeline-evil-visual-state-face   :foreground bg :background nano-salient)
 
+   ;; === Evil mode=============================================================
+
+   (evil-snipe-first-match-face :background nano-highlight :weight 'bold)
+   (evil-snipe-matches-face     :background nano-subtle)
+
    ;; === Font lock ============================================================
 
    (font-lock-variable-name-face :foreground nano-salient :weight 'bold)
