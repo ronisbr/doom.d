@@ -8,7 +8,8 @@
 (add-hook! 'after-setting-font-hook
   (set-fontset-font t 'greek "JetBrainsMono Nerd Font"))
 
-(setq doom-theme 'doom-monokai-classic)
+(after! doom-themes
+  (load-theme 'doom-nano-light t))
 
 ;; The theme `doom-monokai-classic' does not set the color for variables.
 (custom-theme-set-faces! '(doom-monokai-classic)
