@@ -6,7 +6,10 @@
 ;; For some reason, when using emacs-plus, the greek fonts changes for lines
 ;; that are not selected when starting Julia mode.
 (add-hook! 'after-setting-font-hook
-  (set-fontset-font t 'greek "JetBrainsMono Nerd Font"))
+  (set-fontset-font t 'greek "JetBrainsMono Nerd Font")
+  ;; Some emojis we do not want to use Apple's font.
+  (set-fontset-font t ?🅰 "JetBrainsMono Nerd Font")
+  (set-fontset-font t ?🅱 "JetBrainsMono Nerd Font"))
 
 (after! doom-themes
   (load-theme 'doom-nano-light t))
