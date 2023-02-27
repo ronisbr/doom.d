@@ -31,4 +31,15 @@
 ;;   (setq highlight-indent-guides-auto-even-face-perc 80)
 ;;   (setq highlight-indent-guides-auto-character-face-perc 90))
 
+;; Fix the problem when the theme is not correct when in daemon mode.
+;;
+;; See: https://github.com/doomemacs/doomemacs/issues/6221
+(defun load-doom-theme (frame)
+  (select-frame frame)
+  (load-theme doom-theme t))
+
+(if (daemonp)
+    (add-hook 'after-make-frame-functions #'load-doom-theme)
+  (load-theme doom-theme t))
+
 (provide 'setup-theme)
