@@ -38,8 +38,7 @@
   (select-frame frame)
   (load-theme doom-theme t))
 
-(if (daemonp)
-    (add-hook 'after-make-frame-functions #'load-doom-theme)
-  (load-theme doom-theme t))
+(when (daemonp)
+    (add-hook 'after-make-frame-functions #'load-doom-theme))
 
 (provide 'setup-theme)
