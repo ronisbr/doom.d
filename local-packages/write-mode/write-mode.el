@@ -85,9 +85,10 @@
   (setq write-mode--default-font doom-font
         write-mode--default-theme doom-theme
         write-mode--default-variable-pitch-font doom-variable-pitch-font
+        writeroom-header-line t
         doom-font (apply 'font-spec write-mode-font-face)
         doom-variable-pitch-font (apply 'font-spec write-mode-variable-pitch-font-face)
-        doom-theme 'doom-plain)
+        doom-theme 'doom-nano-light)
 
   (display-line-numbers-mode -1)
   (load-theme doom-theme t)
