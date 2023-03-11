@@ -38,6 +38,7 @@
 (require 'setup-menu-bar)
 (require 'setup-org-mode)
 (require 'setup-prog-mode)
+(require 'setup-recentf)
 (require 'setup-spell)
 (require 'setup-treemacs)
 (require 'setup-treesit-auto)
