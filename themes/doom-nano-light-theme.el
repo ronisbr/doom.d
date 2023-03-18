@@ -10,10 +10,10 @@
 ;; Keywords         : mode-line, header-line
 ;; Package-Requires : ((emacs "28") (doom-themes "2"))
 ;; URL              : https://github.com/ronisbr/doom-nano-themes/
-;; Version          : 0.1.0
+;; Version          : 0.2.0
 ;;
 ;;; Usage:
-;; 1. Copy this file to `~/.doom.d/themes/'.
+;; 1. Copy this file to `~/.doom.d/themes/' `~/.config/doom/themes/`.
 ;; 2. Load the theme using `(setq doom-theme 'doom-nano-light)'.
 ;;
 ;;; License:
@@ -40,6 +40,15 @@
 ;; This package provides a light theme for Doom Emacs based on N Λ N O.
 
 ;;; Code:
+
+(defgroup doom-nano-light-theme nil
+  "Options for the `doom-nano-light' theme."
+  :group 'doom-themes)
+
+(defcustom doom-nano-light-theme-highlight-tab-whitespaces nil
+  "If non-nil, the tab whitespaces will be highlighted."
+  :group 'doom-nano-light-theme
+  :type 'boolean)
 
 (def-doom-theme doom-nano-light
   "A light theme for Doom Emacs based on N Λ N O."
@@ -146,6 +155,11 @@
    (tool-bar                     :foreground bg :background nano-faded)
    (tooltip                      :background nano-subtle)
    (trailing-whitespace          :background nano-subtle)
+
+   (whitespace-tab :background
+                   (if doom-nano-light-theme-highlight-tab-whitespaces
+                       nano-subtle
+                     bg))
 
    ;; === Ace window ===========================================================
 
@@ -639,6 +653,17 @@
    (vertico-group-separator :foreground nano-faded)
    (vertico-group-title     :foreground nano-faded)
    (vertico-multiline       :foreground nano-faded)
+
+   ;;; === Vterm ===============================================================
+
+   (vterm-color-black   :foreground fg :background fg)
+   (vterm-color-blue    :foreground blue :background bright-blue)
+   (vterm-color-cyan    :foreground cyan :background bright-cyan)
+   (vterm-color-green   :foreground green :background bright-green)
+   (vterm-color-magenta :foreground magenta :background bright-magenta)
+   (vterm-color-red     :foreground red :background bright-red)
+   (vterm-color-yellow  :foreground yellow :background bright-yellow)
+   (vterm-color-white   :foreground grey :background grey)
 
    ;; === Workspaces ===========================================================
 
