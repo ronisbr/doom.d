@@ -50,7 +50,13 @@
 ;(unpin! t)
 
 (package! doct)
-(package! treesit-auto)
+
+(package! treesit-auto
+  :recipe (:host github
+           :repo "renzmann/treesit-auto"
+           :build (:not autoloads)
+           :build (:not compile)))
+
 (package! julia-ts-mode
   :recipe (:host github
            :repo "ronisbr/julia-ts-mode"))
