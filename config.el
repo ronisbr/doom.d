@@ -40,6 +40,7 @@
 (require 'setup-prog-mode)
 (require 'setup-recentf)
 (require 'setup-spell)
+(require 'setup-svg-tag-mode)
 (require 'setup-treemacs)
 (require 'setup-treesit-auto)
 (require 'setup-vertico)

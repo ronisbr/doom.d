@@ -56,6 +56,7 @@
            :repo "renzmann/treesit-auto"
            :build (:not autoloads)
            :build (:not compile)))
+(package! svg-tag-mode)
 
 (package! julia-ts-mode
   :recipe (:host github
