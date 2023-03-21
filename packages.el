@@ -50,13 +50,8 @@
 ;(unpin! t)
 
 (package! doct)
-
-(package! treesit-auto
-  :recipe (:host github
-           :repo "renzmann/treesit-auto"
-           :build (:not autoloads)
-           :build (:not compile)))
 (package! svg-tag-mode)
+(package! treesit-auto)
 
 (package! julia-ts-mode
   :recipe (:host github
