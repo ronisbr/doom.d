@@ -43,6 +43,9 @@ This function performs the following replacements in the string S:
 ;; =============================================================================
 
 (after! org
+  (custom-set-faces!
+    `(doom-themes-org-at-tag :foreground ,(doom-color 'nano-salient)))
+
   (setq org-agenda-files (list ronisbr/org-gtd-inbox-file
                                ronisbr/org-gtd-project-file
                                ronisbr/org-gtd-tickler-file))
@@ -70,7 +73,7 @@ This function performs the following replacements in the string S:
            "|"
            "[✓](D!)"
            "[!](C@)")))
-  (setq org-todo-keywords-faces
+  (setq org-todo-keyword-faces
         '(("WAIT" . +org-todo-onhold)
           ("STRT" . +org-todo-active)
           ("DLGT" . +org-todo-active)
