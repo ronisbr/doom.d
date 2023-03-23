@@ -1,16 +1,18 @@
 ;;; settings/setup-svg-tag-mode.el --- Setup svg-tag-mode -*- lexical-binding: t; -*-
 
 ;; Definition of regexps to apply the SVG tags.
-(defconst date-regexp     "[0-9]\\{4\\}-[0-9]\\{2\\}-[0-9]\\{2\\}")
-(defconst day-regexp      "[A-Za-z]\\{3\\}")
-(defconst time-regexp     "[0-9]\\{2\\}:[0-9]\\{2\\}")
-(defconst day-time-regexp (format "\\(%s\\)? ?\\(%s\\)?" day-regexp time-regexp))
-(defconst name-regexp     "\\(?:[[:word:]]\\|_\\)+")
+(defconst date-regexp             "[0-9]\\{4\\}-[0-9]\\{2\\}-[0-9]\\{2\\}")
+(defconst day-regexp              "[A-Za-z]\\{3\\}")
+(defconst time-regexp             "[0-9]\\{2\\}:[0-9]\\{2\\}")
+(defconst day-time-regexp         (format "\\(%s\\)? ?\\(%s\\)?" day-regexp time-regexp))
+(defconst name-regexp             "\\(?:[[:word:]]\\|_\\)+")
+(defconst name-with-spaces-regexp "\\(?:[[:word:]]\\|[[:blank:]]\\)+")
 
 (defun ronisbr/set-svg-tag-tags-for-org-mode ()
   "Set the SVG tags for `org-mode'."
   (when (display-graphic-p)
     (setq-local svg-tag-tags
+
                 ;; === TODO keywords ===========================================
 
                 `(("TODO" . ((lambda (tag)
@@ -49,10 +51,20 @@
                   ;; === Name reference ========================================
 
                   (,(format "\\(@%s\\)" name-regexp) .
-                   ((lambda (tag) (svg-tag-make (replace-regexp-in-string "_" " " tag)
-                                           :face 'doom-themes-org-at-tag
-                                           :beg 1
-                                           :margin 0))))
+                   ((lambda (tag) (svg-lib-tag (substring (replace-regexp-in-string "_" " " tag) 1 nil)
+                                          nil
+                                          :font-weight 'bold
+                                          :foreground ,(doom-color 'nano-salient)
+                                          :margin 0
+                                          :stroke 2))))
+
+                  (,(format "\\(@(%s)\\)" name-with-spaces-regexp) .
+                   ((lambda (tag) (svg-lib-tag (substring (replace-regexp-in-string "_" " " tag) 2 -1)
+                                          nil
+                                          :font-weight 'bold
+                                          :foreground ,(doom-color 'nano-salient)
+                                          :margin 0
+                                          :stroke 2))))
 
                   ;; === Timestamps ============================================
 
