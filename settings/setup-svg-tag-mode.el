@@ -53,6 +53,7 @@
                   (,(format "\\(@%s\\)" name-regexp) .
                    ((lambda (tag) (svg-lib-tag (substring (replace-regexp-in-string "_" " " tag) 1 nil)
                                           nil
+                                          :background ,(doom-color 'bg)
                                           :font-weight 'bold
                                           :foreground ,(doom-color 'nano-salient)
                                           :margin 0
@@ -61,10 +62,21 @@
                   (,(format "\\(@(%s)\\)" name-with-spaces-regexp) .
                    ((lambda (tag) (svg-lib-tag (substring (replace-regexp-in-string "_" " " tag) 2 -1)
                                           nil
+                                          :background ,(doom-color 'bg)
                                           :font-weight 'bold
                                           :foreground ,(doom-color 'nano-salient)
                                           :margin 0
                                           :stroke 2))))
+
+                  ;; === Sections ==============================================
+
+                  (,(format "\\(## %s ##\\)" name-with-spaces-regexp) .
+                   ((lambda (tag) (svg-tag-make tag
+                                           :beg 3
+                                           :end -3
+                                           :face 'org-tag
+                                           :inverse t
+                                           :margin 0))))
 
                   ;; === Timestamps ============================================
 
