@@ -7,6 +7,7 @@
 (defconst day-time-regexp         (format "\\(%s\\)? ?\\(%s\\)?" day-regexp time-regexp))
 (defconst name-regexp             "\\(?:[[:word:]]\\|_\\)+")
 (defconst name-with-spaces-regexp "\\(?:[[:word:]]\\|[[:blank:]]\\)+")
+(defconst field-regexp            "\\(?:[[:word:]]\\|[[:blank:]]\\)+")
 
 (defun ronisbr/set-svg-tag-tags-for-org-mode ()
   "Set the SVG tags for `org-mode'."
@@ -48,14 +49,24 @@
                                              :face 'org-done
                                              :margin 0))))
 
+                  ;; === Fields ================================================
+
+                  (,(format "\\(## %s ##\\)" field-regexp) .
+                   ((lambda (tag) (svg-tag-make tag
+                                           :beg 3
+                                           :end -3
+                                           :inverse t
+                                           :face 'doom-themes-org-hash-tag
+                                           :margin 0))))
+
                   ;; === Name reference ========================================
 
                   (,(format "\\(@%s\\)" name-regexp) .
                    ((lambda (tag) (svg-lib-tag (substring (replace-regexp-in-string "_" " " tag) 1 nil)
                                           nil
                                           :background ,(doom-color 'bg)
-                                          :font-weight 'bold
                                           :foreground ,(doom-color 'nano-salient)
+                                          :font-weight 'bold
                                           :margin 0
                                           :stroke 2))))
 
@@ -63,33 +74,23 @@
                    ((lambda (tag) (svg-lib-tag (substring (replace-regexp-in-string "_" " " tag) 2 -1)
                                           nil
                                           :background ,(doom-color 'bg)
-                                          :font-weight 'bold
                                           :foreground ,(doom-color 'nano-salient)
+                                          :font-weight 'bold
                                           :margin 0
                                           :stroke 2))))
 
-                  ;; === Sections ==============================================
-
-                  (,(format "\\(## %s ##\\)" name-with-spaces-regexp) .
-                   ((lambda (tag) (svg-tag-make tag
-                                           :beg 3
-                                           :end -3
-                                           :face 'org-tag
-                                           :inverse t
-                                           :margin 0))))
-
                   ;; === Timestamps ============================================
 
-                  (,(format "%s" time-regexp) .
+                  (,(format "^[\\*]* \\(%s\\)" time-regexp) .
                    ((lambda (tag) (svg-tag-make tag
                                            :margin 0))))
 
-                  (,(format "\\(%s \\)-- %s" time-regexp time-regexp) .
+                  (,(format "^[\\*]* \\(%s \\)-- %s" time-regexp time-regexp) .
                    ((lambda (tag) (svg-tag-make tag
                                            :crop-right t
                                            :margin 0))))
 
-                  (,(format "%s \\(-- %s\\)" time-regexp time-regexp) .
+                  (,(format "^[\\*]* %s \\(-- %s\\)" time-regexp time-regexp) .
                    ((lambda (tag) (svg-tag-make tag
                                            :beg 3
                                            :crop-left t
