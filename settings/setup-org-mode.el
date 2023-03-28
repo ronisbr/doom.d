@@ -38,6 +38,50 @@ This function performs the following replacements in the string S:
 - `@(NAME[ SURNAME]) => *NAME[ SURNAME]*'"
   (replace-regexp-in-string "@(\\(\\(\\w+\\|\\s-\\)+\\))" "*\\1*" s))
 
+(after! org
+  (defun ronisbr/org-insert-heading-time ()
+    "Insert the property `TIME' to the current Org heading."
+    (interactive)
+    (let* (
+           ;; Try to obtain the date from the Org title.
+           (ptitle-date  (parse-time-string (org-get-title)))
+           (title-day    (nth 3 ptitle-date))
+           (title-month  (nth 4 ptitle-date))
+           (title-year   (nth 5 ptitle-date))
+           (title-date-p (and title-day title-month title-year))
+
+           ;; If the title does not have a valid date, use the current date.
+           (pnow         (decode-time))
+           (propday      (if title-date-p title-day   (nth 3 pnow)))
+           (propmonth    (if title-date-p title-month (nth 4 pnow)))
+           (propyear     (if title-date-p title-year  (nth 5 pnow)))
+
+           ;; Try to obtain the property hour from the heading. If it is not
+           ;; possible, ask the user for a hour.
+           (org-heading  (nth 4 (org-heading-components)))
+           (hourstr      (progn
+                           (if (string-match "^\\([0-9]\\{2\\}:[0-9]\\{2\\}\\)" org-heading)
+                               (match-string 1 org-heading)
+                             (read-string "Enter the hour [HH:MM]: "))))
+           (prophour     (nth 2 (parse-time-string hourstr)))
+           (propmin      (nth 1 (parse-time-string hourstr)))
+
+           ;; Parse the timestamp to be added
+           (timestamp    (format-time-string "<%Y-%m-%d %a %H:%M>"
+                                             (encode-time `(0
+                                                            ,propmin
+                                                            ,prophour
+                                                            ,propday
+                                                            ,propmonth
+                                                            ,propyear
+                                                            nil
+                                                            -1
+                                                            nil)))))
+
+      (save-excursion
+        (org-back-to-heading)
+        (org-set-property "TIME" timestamp)))))
+
 ;; =============================================================================
 ;;                                    Org
 ;; =============================================================================
@@ -48,7 +92,8 @@ This function performs the following replacements in the string S:
 
   (setq org-agenda-files (list ronisbr/org-gtd-inbox-file
                                ronisbr/org-gtd-project-file
-                               ronisbr/org-gtd-tickler-file))
+                               ronisbr/org-gtd-tickler-file
+                               "~/Nextcloud/org/Roam/Diário/"))
   (setq org-edit-src-content-indentation 0)
   (setq org-image-actual-width 400)
   (setq org-log-done 'time)
