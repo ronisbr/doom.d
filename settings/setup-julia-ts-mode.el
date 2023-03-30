@@ -17,6 +17,12 @@
   ;; tree-sitter.
   (add-hook 'julia-ts-mode-hook (lambda () (highlight-numbers-mode -1)))
 
+  ;; We must replace epsilon in Julia mode because JetBrainsMono does not have a
+  ;; glyph to the lunate version of it that is used by default in Julia.
+  (add-to-list 'font-lock-extra-managed-props 'display)
+  (font-lock-add-keywords 'julia-ts-mode
+                          '(("\\(ϵ\\)" 1 '(face nil display "ε"))))
+
   ;; Electric indent mode.
   (set-electric! 'julia-ts-mode
     :words '("catch"
