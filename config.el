@@ -14,6 +14,9 @@
 (setenv "LC_ALL" "pt_BR.UTF-8")
 (set-locale-environment "pt_BR.UTF-8")
 
+;; Set fill-columns at position 92.
+(setq-default fill-column 92)
+
 ;; Enable smooth scrolling by default.
 (pixel-scroll-precision-mode 1)
 
