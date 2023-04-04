@@ -149,6 +149,9 @@ This function performs the following replacements in the string S:
   (add-to-list 'org-export-filter-body-functions
                'ronisbr/org-export-process-name-tags))
 
+(after! org-archive-subtree-hierarchically
+  (setq org-archive-default-command 'org-archive-subtree-hierarchically))
+
 ;; Se the default dictionary in org-mode to Brazilian Portuguese.
 (add-hook! 'org-mode-hook (ispell-change-dictionary "pt_BR"))
 

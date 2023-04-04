@@ -69,3 +69,7 @@
 
 (use-package! write-mode
   :load-path "~/.doom.d/local-packages/write-mode")
+
+(use-package! org-archive-subtree-hierarchically
+  :after org
+  :load-path "~/.doom.d/local-packages/org-archive-subtree-hierarchically")
