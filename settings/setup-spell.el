@@ -1,6 +1,4 @@
-;;; ~/.doom.d/settings/setup-spell.el -*- lexical-binding: t; -*-
-;;
-;; Configuration for spell checker.
+;;; ~/.doom.d/settings/setup-spell.el --- Configure spell-checker -*- lexical-binding: t; -*-
 
 (after! flyspell
   ;; Select default dictionary.

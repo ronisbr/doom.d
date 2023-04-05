@@ -20,13 +20,13 @@
 ;; Enable smooth scrolling by default.
 (pixel-scroll-precision-mode 1)
 
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
+;; If you use `org' and don't want your org files in the default location below, change
+;; `org-directory'. It must be set before org loads!
 (setq org-directory "~/Nextcloud/org"
       org-agenda-files '("~/Nextcloud/org/Agenda"))
 
-;; This determines the style of line numbers in effect. If set to `nil', line
-;; numbers are disabled. For relative line numbers, set this to `relative'.
+;; This determines the style of line numbers in effect. If set to `nil', line numbers are
+;; disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
 
 ;; Custom settings.
@@ -59,9 +59,9 @@
 (use-package! text-align
   :load-path "~/.doom.d/local-lisp")
 
-;; =============================================================================
-;; Local packages
-;; =============================================================================
+;; =========================================================================================
+;;                                     Local packages
+;; =========================================================================================
 
 (use-package! ox-pandoc-html
   :after org

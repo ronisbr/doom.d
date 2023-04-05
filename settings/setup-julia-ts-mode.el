@@ -1,21 +1,18 @@
-;;; ~/.doom.d/settings/setup-julia-ts-mode.el -*- lexical-binding: t; -*-
-;;
-;; Configurations for Julia mode with tree-sitter support.
+;;; ~/.doom.d/settings/setup-julia-ts-mode.el --- Configure julia-ts-mode -*- lexical-binding: t; -*-
 
 (use-package! julia-ts-mode
   :mode "\\.jl$")
 
 (after! julia-ts-mode
-  ;; We do not need `highlight-numbers-mode' because everything is handled by
-  ;; tree-sitter.
+  ;; We do not need `highlight-numbers-mode' because everything is handled by tree-sitter.
   (add-hook 'julia-ts-mode-hook (lambda () (highlight-numbers-mode -1)))
 
-  ;; We need to increase the connection timeout of Eglot to allow enough initialization
-  ;; time for the server.
+  ;; We need to increase the connection timeout of Eglot to allow enough initialization time
+  ;; for the server.
   (setq-hook! 'julia-ts-mode-hook eglot-connect-timeout (max eglot-connect-timeout 120))
 
-  ;; We must replace epsilon in Julia mode because JetBrainsMono does not have a
-  ;; glyph to the lunate version of it that is used by default in Julia.
+  ;; We must replace epsilon in Julia mode because JetBrainsMono does not have a glyph to
+  ;; the lunate version of it that is used by default in Julia.
   (add-to-list 'font-lock-extra-managed-props 'display)
   (font-lock-add-keywords 'julia-ts-mode
                           '(("\\(ϵ\\)" 1 '(face nil display "ε"))))

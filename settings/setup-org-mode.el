@@ -1,10 +1,8 @@
-;;; ~/.doom.d/settings/setup-org-mode.el -*- lexical-binding: t; -*-
-;;
-;; Configure the org-mode.
+;;; ~/.doom.d/settings/setup-org-mode.el --- Configure org-mode -*- lexical-binding: t; -*-
 
-;; =============================================================================
-;;                            Org files definition
-;; =============================================================================
+;; =========================================================================================
+;;                                  Org files definition
+;; =========================================================================================
 
 ;; Default directory of Org files.
 (defvar ronisbr/org-gtd-directory
@@ -82,9 +80,9 @@ This function performs the following replacements in the string S:
         (org-back-to-heading)
         (org-set-property "TIME" timestamp)))))
 
-;; =============================================================================
-;;                                    Org
-;; =============================================================================
+;; =========================================================================================
+;;                                          Org
+;; =========================================================================================
 
 (after! org
   (custom-set-faces!
@@ -149,15 +147,12 @@ This function performs the following replacements in the string S:
   (add-to-list 'org-export-filter-body-functions
                'ronisbr/org-export-process-name-tags))
 
-(after! org-archive-subtree-hierarchically
-  (setq org-archive-default-command 'org-archive-subtree-hierarchically))
-
 ;; Se the default dictionary in org-mode to Brazilian Portuguese.
 (add-hook! 'org-mode-hook (ispell-change-dictionary "pt_BR"))
 
-;; =============================================================================
-;;                                 Org archive
-;; =============================================================================
+;; =========================================================================================
+;;                                      Org archive
+;; =========================================================================================
 
 (after! org
   ;; Archive the tree hierarchically.
@@ -202,9 +197,9 @@ This function performs the following replacements in the string S:
                 (org-paste-subtree level tree-text)))))))
     (org-save-all-org-buffers)))
 
-;; =============================================================================
-;;                                 Org agenda
-;; =============================================================================
+;; =========================================================================================
+;;                                       Org agenda
+;; =========================================================================================
 
 (after! org
   (setq-default
@@ -228,9 +223,9 @@ This function performs the following replacements in the string S:
   (advice-remove 'org-fast-tag-selection #'+popup--org-fix-popup-window-shrinking-a)
   (advice-remove 'org-fast-todo-selection #'+popup--org-fix-popup-window-shrinking-a))
 
-;; =============================================================================
-;;                                Org capture
-;; =============================================================================
+;; =========================================================================================
+;;                                      Org capture
+;; =========================================================================================
 
 (after! org
   (setq org-capture-templates
@@ -251,24 +246,24 @@ This function performs the following replacements in the string S:
                  :template ("* %?\n%^{Início:}t\n:PROPERTIES:\n:CREATED: %U\n:END:"
                             "%i"))))))
 
-;; =============================================================================
-;;                                 Org clock
-;; =============================================================================
+;; =========================================================================================
+;;                                       Org clock
+;; =========================================================================================
 
 ;; Automatically save the file after clock in and out.
 (add-hook 'org-clock-in-hook #'save-buffer)
 (add-hook 'org-clock-out-hook #'save-buffer)
 
-;; =============================================================================
-;;                             Org Fancy Priorities
-;; =============================================================================
+;; =========================================================================================
+;;                                  Org Fancy Priorities
+;; =========================================================================================
 
 (after! org-fancy-priorities
   (setq org-fancy-priorities-list '("🅰" "🅱" "🅲")))
 
-;; =============================================================================
-;;                                 Org Roam
-;; =============================================================================
+;; =========================================================================================
+;;                                        Org Roam
+;; =========================================================================================
 
 (after! org-roam
   :config

@@ -1,6 +1,4 @@
-;;; ~/.doom.d/settings/setup-emojify.el -*- lexical-binding: t; -*-
-;;
-;; General configurations for emojify.
+;;; ~/.doom.d/settings/setup-emojify.el --- Configure emojify -*- lexical-binding: t; -*-
 
 (setq emojify-display-style 'unicode)
 

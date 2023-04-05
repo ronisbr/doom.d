@@ -1,6 +1,4 @@
-;;; ~/.doom.d/settings/setup-keybindings.el -*- lexical-binding: t; -*-
-;;
-;; Configure global keybindings.
+;;; ~/.doom.d/settings/setup-keybindings.el --- Configure keybindings -*- lexical-binding: t; -*-
 
 (map! "<f5>" #'neotree-toggle
       "<f6>" #'ronisbr/flyspell-switch-dictionary)

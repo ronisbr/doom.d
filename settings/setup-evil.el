@@ -1,13 +1,11 @@
-;;; ~/.doom.d/settings/setup-evil.el -*- lexical-binding: t; -*-
-;;
-;; General configurations for Evil mode.
+;;; ~/.doom.d/settings/setup-evil.el --- Configure evil mode -*- lexical-binding: t; -*-
 
 ;; The scope of evil-snipe should be the entire visible buffer.
 (setq evil-snipe-scope 'whole-visible)
 
-;; =============================================================================
-;;                               Evil operators
-;; =============================================================================
+;; =========================================================================================
+;;                                     Evil operators
+;; =========================================================================================
 
 (after! evil
   (evil-define-operator ronisbr/evil-join (beg end)

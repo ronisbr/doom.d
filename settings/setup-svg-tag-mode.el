@@ -14,7 +14,7 @@
   (when (display-graphic-p)
     (setq-local svg-tag-tags
 
-                ;; === TODO keywords ===========================================
+                ;; === TODO keywords =======================================================
 
                 `(("TODO" . ((lambda (tag)
                                (svg-tag-make "TODO"
@@ -49,7 +49,7 @@
                                              :face 'org-done
                                              :margin 0))))
 
-                  ;; === Fields ================================================
+                  ;; === Fields ============================================================
 
                   (,(format "\\(## %s ##\\)" field-regexp) .
                    ((lambda (tag) (svg-tag-make tag
@@ -59,7 +59,7 @@
                                            :face 'doom-themes-org-hash-tag
                                            :margin 0))))
 
-                  ;; === Name reference ========================================
+                  ;; === Name reference ====================================================
 
                   (,(format "\\(@%s\\)" name-regexp) .
                    ((lambda (tag) (svg-lib-tag (substring (replace-regexp-in-string "_" " " tag) 1 nil)
@@ -79,7 +79,7 @@
                                           :margin 0
                                           :stroke 2))))
 
-                  ;; === Timestamps ============================================
+                  ;; === Timestamps ========================================================
 
                   (,(format "^[\\*]* \\(%s\\)" time-regexp) .
                    ((lambda (tag) (svg-tag-make tag

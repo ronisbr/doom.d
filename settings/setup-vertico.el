@@ -1,10 +1,3 @@
-;;; settings/setup-vertico.el -*- lexical-binding: t; -*-
-;;
-;; Configure the vertico.
-
-
-;; =============================================================================
-;;                              Vertico-posframe
-;; =============================================================================
+;;; settings/setup-vertico.el --- Configure vertico -*- lexical-binding: t; -*-
 
 (provide 'setup-vertico)

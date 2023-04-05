@@ -1,6 +1,4 @@
-;;; settings/setup-treesit-auto.el -*- lexical-binding: t; -*-
-;;
-;; Configure treesit-auto.
+;;; settings/setup-treesit-auto.el --- Configure treesit-auto -*- lexical-binding: t; -*-
 
 (use-package! treesit-auto
   :config

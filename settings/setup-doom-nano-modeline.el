@@ -1,4 +1,4 @@
-;;; settings/setup-doom-nano-modeline.el -*- lexical-binding: t; -*-
+;;; settings/setup-doom-nano-modeline.el --- Configure doom-nano-modeline -*- lexical-binding: t; -*-
 
 (use-package! doom-nano-modeline
   :config

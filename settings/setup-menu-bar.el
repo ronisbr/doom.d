@@ -1,6 +1,4 @@
-;;; ~/.doom.d/settings/setup-menu-bar.el -*- lexical-binding: t; -*-
-;;
-;; Configure Emacs menu bar.
+;;; ~/.doom.d/settings/setup-menu-bar.el --- Configure Emacs menu bar -*- lexical-binding: t; -*-
 
 (set-face-attribute 'menu nil
                     :inverse-video nil
