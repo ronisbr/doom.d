@@ -5,4 +5,4 @@
 # --
 
 (if yas-selected-text
-  (yas-expand-snippet (ronisbr/julia--create-doc yas-selected-text)))
+  (yas-expand-snippet (julia-docstrings--yas-docstring yas-selected-text)))
