@@ -10,7 +10,7 @@
 ;; Keywords         : mode-line, header-line
 ;; Package-Requires : ((emacs "28") (doom-themes "2"))
 ;; URL              : https://github.com/ronisbr/doom-nano-themes/
-;; Version          : 0.2.1
+;; Version          : 0.2.2
 ;;
 ;;; Usage:
 ;; 1. Copy this file to `~/.doom.d/themes/' `~/.config/doom/themes/`.
@@ -298,10 +298,10 @@
 
    ;; === Line numbers =========================================================
 
-   (line-number :foreground nano-faded)
-   (line-number-current-line :foreground nil)
-   (line-number-major-tick :foreground nano-faded)
-   (line-number-minor-tick :foreground nano-faded)
+   (line-number              :foreground nano-faded)
+   (line-number-current-line :foreground fg)
+   (line-number-major-tick   :foreground nano-faded)
+   (line-number-minor-tick   :foreground nano-faded)
 
    ;; === LSP ==================================================================
 
