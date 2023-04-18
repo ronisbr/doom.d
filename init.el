@@ -16,7 +16,7 @@
 
 (doom! :input
        :completion
-       company
+       (company +childframe)
        (vertico +icons)
 
        :ui
@@ -25,16 +25,15 @@
        (emoji +github)
        hl-todo
        indent-guides
-       ligatures
+       ;; ligatures
        ;; modeline
        neotree
        ophints
        (popup +defaults)
-       ;; tabs
        treemacs
        (vc-gutter +pretty)
        vi-tilde-fringe
-       window-select
+       (window-select +numbers)
        workspaces
        zen
 
@@ -47,8 +46,9 @@
        word-wrap
 
        :emacs
-       dired
+       (dired +icons +ranger)
        electric
+       (ibuffer +icons)
        (undo +tree)
        vc
 
@@ -58,6 +58,7 @@
        :checkers
        (spell +everywhere +flyspell +hunspell)
        grammar
+       (syntax +childframe)
 
        :tools
        (eval +overlay)
