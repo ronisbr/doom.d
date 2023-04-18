@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Insert the current time: [HH:MM]
+# key: tnow
+# --
+
+`(format-time-string "[%H:%M]" (current-time))` $0

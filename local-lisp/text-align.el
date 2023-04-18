@@ -1,10 +1,4 @@
-;; =============================================================================
-;;
-;; text-align.el
-;;
-;;      Functions to align text.
-;;
-;; =============================================================================
+;;; text-align.el --- Functions to align text -*- lexical-binding: t; -*-
 
 (defun ronisbr/text-center-align (fill field-size &optional begin end)
   "Align the lines in the region between `begin` and `end` to the center.

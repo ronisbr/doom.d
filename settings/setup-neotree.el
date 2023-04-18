@@ -1,6 +1,4 @@
-;;; ~/.doom.d/settings/setup-treeemacs.el -*- lexical-binding: t; -*-
-;;
-;; Configurations for treemacs.
+;;; ~/.doom.d/settings/setup-treeemacs.el --- Configure neo-tree -*- lexical-binding: t; -*-
 
 (setq neo-smart-open t)
 

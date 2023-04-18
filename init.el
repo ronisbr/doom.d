@@ -16,8 +16,8 @@
 
 (doom! :input
        :completion
-       company
-       vertico
+       (company +childframe)
+       (vertico +icons)
 
        :ui
        doom
@@ -25,14 +25,15 @@
        (emoji +github)
        hl-todo
        indent-guides
-       ligatures
-       modeline
+       ;; ligatures
+       ;; modeline
+       neotree
        ophints
        (popup +defaults)
        treemacs
        (vc-gutter +pretty)
        vi-tilde-fringe
-       window-select
+       (window-select +numbers)
        workspaces
        zen
 
@@ -45,9 +46,10 @@
        word-wrap
 
        :emacs
-       dired
+       (dired +icons +ranger)
        electric
-       undo
+       (ibuffer +icons)
+       (undo +tree)
        vc
 
        :term
@@ -56,11 +58,12 @@
        :checkers
        (spell +everywhere +flyspell +hunspell)
        grammar
+       (syntax +childframe)
 
        :tools
        (eval +overlay)
        lookup
-       lsp
+       (lsp +eglot)
        magit
        pdf
 
@@ -74,7 +77,7 @@
        (julia +lsp)
        latex
        markdown
-       (org +pretty)
+       (org +dragndrop +pretty +roam2)
        python
        qt
        sh
@@ -82,6 +85,7 @@
        :email
 
        :app
+       everywhere
 
        :config
        ;;literate

@@ -1,9 +1,6 @@
-;;; ~/.doom.d/settings/setup-auctex.el -*- lexical-binding: t; -*-
-;;
-;; Configure AUXTeX.
+;;; ~/.doom.d/settings/setup-auctex.el --- Configure AUXTeX -*- lexical-binding: t; -*-
 
-(setenv "PATH" (concat "/Library/TeX/texbin:"
-                       (getenv "PATH")))
+(setenv "PATH" (concat "/Library/TeX/texbin:" (getenv "PATH")))
 (add-to-list 'exec-path "/Library/TeX/texbin")
 
 (after! tex

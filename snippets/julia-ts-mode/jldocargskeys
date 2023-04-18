@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Julia documentation with arguments and keywords
+# key: jldocargskeys
+# type: command
+# --
+
+(if yas-selected-text
+  (yas-expand-snippet (julia-docstrings--yas-docstring-with-arguments-and-keywords yas-selected-text)))

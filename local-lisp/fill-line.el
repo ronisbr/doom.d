@@ -1,10 +1,4 @@
-;; =============================================================================
-;;
-;; fill-line.el
-;;
-;;      Functions to fill a line with a character.
-;;
-;; =============================================================================
+;;; fill-line.el --- Functions to fill a line with a character -*- lexical-binding: t; -*-
 
 (defun ronisbr/copy-to-end ()
   "Copy the current character to the rest of line up to `fill-column`."

@@ -1,6 +1,4 @@
-;;; settings/setup-vterm.el -*- lexical-binding: t; -*-
-;;
-;; Configuration for vterm.
+;;; settings/setup-vterm.el --- Configure vterm -*- lexical-binding: t; -*-
 
 ;; Improve speed when using in terminal.
 ;;     Ref: https://www.reddit.com/r/emacs/comments/pjtm91/vterm_a_little_bit_slow/

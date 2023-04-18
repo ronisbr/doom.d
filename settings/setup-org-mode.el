@@ -1,10 +1,8 @@
-;;; ~/.doom.d/settings/setup-org-mode.el -*- lexical-binding: t; -*-
-;;
-;; Configure the org-mode.
+;;; ~/.doom.d/settings/setup-org-mode.el --- Configure org-mode -*- lexical-binding: t; -*-
 
-;; =============================================================================
-;;                            Org files definition
-;; =============================================================================
+;; =========================================================================================
+;;                                  Org files definition
+;; =========================================================================================
 
 ;; Default directory of Org files.
 (defvar ronisbr/org-gtd-directory
@@ -31,15 +29,74 @@
 (setq ronisbr/org-gtd-tickler-file
       (expand-file-name ronisbr/+org-gtd-tickler-file ronisbr/org-gtd-directory))
 
-;; =============================================================================
-;;                                    Org
-;; =============================================================================
+(defun ronisbr/org-export-process-name-tags (s backend info)
+  "Function to process the name tags when exporting.
+
+This function performs the following replacements in the string S:
+- `@(NAME[ SURNAME]) => *NAME[ SURNAME]*'"
+  (replace-regexp-in-string "@(\\(\\(\\w+\\|\\s-\\)+\\))" "*\\1*" s))
 
 (after! org
+  (defun ronisbr/org-insert-heading-time ()
+    "Insert the property `TIME' to the current Org heading."
+    (interactive)
+    (let* (
+           ;; Try to obtain the date from the Org title.
+           (ptitle-date  (parse-time-string (org-get-title)))
+           (title-day    (nth 3 ptitle-date))
+           (title-month  (nth 4 ptitle-date))
+           (title-year   (nth 5 ptitle-date))
+           (title-date-p (and title-day title-month title-year))
+
+           ;; If the title does not have a valid date, use the current date.
+           (pnow         (decode-time))
+           (propday      (if title-date-p title-day   (nth 3 pnow)))
+           (propmonth    (if title-date-p title-month (nth 4 pnow)))
+           (propyear     (if title-date-p title-year  (nth 5 pnow)))
+
+           ;; Try to obtain the property hour from the heading. If it is not
+           ;; possible, ask the user for a hour.
+           (org-heading  (nth 4 (org-heading-components)))
+           (hourstr      (progn
+                           (if (string-match "^\\([0-9]\\{2\\}:[0-9]\\{2\\}\\)" org-heading)
+                               (match-string 1 org-heading)
+                             (read-string "Enter the hour [HH:MM]: "))))
+           (prophour     (nth 2 (parse-time-string hourstr)))
+           (propmin      (nth 1 (parse-time-string hourstr)))
+
+           ;; Parse the timestamp to be added
+           (timestamp    (format-time-string "<%Y-%m-%d %a %H:%M>"
+                                             (encode-time `(0
+                                                            ,propmin
+                                                            ,prophour
+                                                            ,propday
+                                                            ,propmonth
+                                                            ,propyear
+                                                            nil
+                                                            -1
+                                                            nil)))))
+
+      (save-excursion
+        (org-back-to-heading)
+        (org-set-property "TIME" timestamp)))))
+
+;; =========================================================================================
+;;                                          Org
+;; =========================================================================================
+
+(after! org
+  (custom-set-faces!
+    `(doom-themes-org-at-tag :foreground ,(doom-color 'nano-salient)))
+
   (setq org-agenda-files (list ronisbr/org-gtd-inbox-file
                                ronisbr/org-gtd-project-file
-                               ronisbr/org-gtd-tickler-file))
+                               ronisbr/org-gtd-tickler-file
+                               "~/Nextcloud/org/Roam/Diário/"))
+  (setq org-edit-src-content-indentation 0)
+  (setq org-image-actual-width 400)
   (setq org-log-done 'time)
+  (setq org-log-into-drawer "LOGBOOK")
+  (setq org-src-preserve-indentation nil)
   (setq org-startup-folded 'content)
   (setq org-tags-column +100)
   (setq org-todo-keywords
@@ -59,7 +116,7 @@
            "|"
            "[✓](D!)"
            "[!](C@)")))
-  (setq org-todo-keywords-faces
+  (setq org-todo-keyword-faces
         '(("WAIT" . +org-todo-onhold)
           ("STRT" . +org-todo-active)
           ("DLGT" . +org-todo-active)
@@ -67,11 +124,82 @@
           ("[?]"  . +org-todo-onhold)
           ("[-]"  . +org-todo-active)
           ("[>]"  . +org-todo-active)
-          ("[!]"  . +org-todo-cancel))))
+          ("[!]"  . +org-todo-cancel)))
 
-;; =============================================================================
-;;                                 Org agenda
-;; =============================================================================
+  ;; Do not use highlight `@' and `#' using Doom's default pattern.
+  (setq doom-themes-org-fontify-special-tags nil)
+
+  ;; This new patters allow accents in `@' and `#' as well as spaces when using
+  ;; with parenthesis.
+  (font-lock-add-keywords
+   'org-mode
+   `((,(rx (or bol space)
+           (group (group (or "#" "@"))
+                  (group (or (one-or-more word)
+                             (and "(" (one-or-more (or word space)) ")")))))
+      1
+      (doom-themes--org-tag-face 2)
+      prepend))
+   t))
+
+(after! ox
+  ;; Add filter to replace the tags with the names when exporting.
+  (add-to-list 'org-export-filter-body-functions
+               'ronisbr/org-export-process-name-tags))
+
+;; Se the default dictionary in org-mode to Brazilian Portuguese.
+(add-hook! 'org-mode-hook (ispell-change-dictionary "pt_BR"))
+
+;; =========================================================================================
+;;                                      Org archive
+;; =========================================================================================
+
+(after! org
+  ;; Archive the tree hierarchically.
+  (defadvice org-archive-subtree (around fix-hierarchy activate)
+    (let* ((fix-archive-p (and (not current-prefix-arg)
+                               (not (use-region-p))))
+           (afile  (car (org-archive--compute-location
+                         (or (org-entry-get nil "ARCHIVE" 'inherit) org-archive-location))))
+           (buffer (or (find-buffer-visiting afile) (find-file-noselect afile))))
+      ad-do-it
+      (when fix-archive-p
+        (with-current-buffer buffer
+          (goto-char (point-max))
+          (while (org-up-heading-safe))
+          (let* ((olpath (org-entry-get (point) "ARCHIVE_OLPATH"))
+                 (path (and olpath (split-string olpath "/")))
+                 (level 1)
+                 tree-text)
+            (when olpath
+              (org-mark-subtree)
+              (setq tree-text (buffer-substring (region-beginning) (region-end)))
+              (let (this-command) (org-cut-subtree))
+              (goto-char (point-min))
+              (save-restriction
+                (widen)
+                (-each path
+                  (lambda (heading)
+                    (if (re-search-forward
+                         (rx-to-string
+                          `(: bol (repeat ,level "*") (1+ " ") ,heading)) nil t)
+                        (org-narrow-to-subtree)
+                      (goto-char (point-max))
+                      (unless (looking-at "^")
+                        (insert "\n"))
+                      (insert (make-string level ?*)
+                              " "
+                              heading
+                              "\n"))
+                    (cl-incf level)))
+                (widen)
+                (org-end-of-subtree t t)
+                (org-paste-subtree level tree-text)))))))
+    (org-save-all-org-buffers)))
+
+;; =========================================================================================
+;;                                       Org agenda
+;; =========================================================================================
 
 (after! org
   (setq-default
@@ -88,11 +216,16 @@
    org-agenda-time-grid '((daily today remove-match)
                           (0800 1000 1200 1400 1600 1800 2000 2200)
                           "      " "-----------")
-   org-agenda-current-time-string "◀ ----- now"))
+   org-agenda-current-time-string "◀ ----- now")
 
-;; =============================================================================
-;;                                Org capture
-;; =============================================================================
+  ;; Those advice were designed when using a bottom modeline. Since we are using
+  ;; a header line, we must remove them.
+  (advice-remove 'org-fast-tag-selection #'+popup--org-fix-popup-window-shrinking-a)
+  (advice-remove 'org-fast-todo-selection #'+popup--org-fix-popup-window-shrinking-a))
+
+;; =========================================================================================
+;;                                      Org capture
+;; =========================================================================================
 
 (after! org
   (setq org-capture-templates
@@ -113,12 +246,49 @@
                  :template ("* %?\n%^{Início:}t\n:PROPERTIES:\n:CREATED: %U\n:END:"
                             "%i"))))))
 
-;; =============================================================================
-;;                                 Org clock
-;; =============================================================================
+;; =========================================================================================
+;;                                       Org clock
+;; =========================================================================================
 
 ;; Automatically save the file after clock in and out.
 (add-hook 'org-clock-in-hook #'save-buffer)
 (add-hook 'org-clock-out-hook #'save-buffer)
+
+;; =========================================================================================
+;;                                  Org Fancy Priorities
+;; =========================================================================================
+
+(after! org-fancy-priorities
+  (setq org-fancy-priorities-list '("🅰" "🅱" "🅲")))
+
+;; =========================================================================================
+;;                                        Org Roam
+;; =========================================================================================
+
+(after! org-roam
+  :config
+  (setq org-roam-directory "~/Nextcloud/org/Roam/")
+  (setq org-roam-dailies-directory "Diário/")
+  (setq org-roam-capture-templates
+        '(("d" "Geral"
+           plain "%?"
+           :target (file+head "Geral/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+           :unnarrowed t)
+          ("n" "Notas"
+           plain "%?"
+           :target (file+head "Notas/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+           :unnarrowed t)
+          ("t" "Trabalho"
+           plain "%?"
+           :target (file+head "Trabalho/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+           :unnarrowed t)))
+  (setq org-roam-dailies-capture-templates
+        '(("d" "default"
+           entry "* %<%H:%M> %?"
+           :target (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>"))))
+  (setq org-roam-node-display-template
+        (format "%s ${doom-hierarchy:*} %s"
+                (propertize "${doom-type:10}" 'face 'font-lock-keyword-face)
+                (propertize "${doom-tags:25}" 'face 'org-tag))))
 
 (provide 'setup-org-mode)

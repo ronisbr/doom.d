@@ -1,6 +1,4 @@
-;;; ~/.doom.d/settings/setup-prog-mode.el -*- lexical-binding: t; -*-
-;;
-;; Configure the common options for all prog-mode.
+;;; ~/.doom.d/settings/setup-prog-mode.el --- Configure prog-mode -*- lexical-binding: t; -*-
 
 ;; Show trailing spaces.
 (add-hook! prog-mode #'doom-enable-show-trailing-whitespace-h)

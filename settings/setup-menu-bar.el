@@ -1,6 +1,4 @@
-;;; ~/.doom.d/settings/setup-menu-bar.el -*- lexical-binding: t; -*-
-;;
-;; Configure Emacs menu bar.
+;;; ~/.doom.d/settings/setup-menu-bar.el --- Configure Emacs menu bar -*- lexical-binding: t; -*-
 
 (set-face-attribute 'menu nil
                     :inverse-video nil
@@ -26,6 +24,9 @@
                     :bold nil
                     :foreground "#D7D5D1")
 
-(menu-bar-mode t)
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+              (lambda (frame)
+                (with-selected-frame frame (menu-bar-mode -1)))))
 
 (provide 'setup-menu-bar)

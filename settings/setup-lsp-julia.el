@@ -1,4 +1,4 @@
-;;; ~/.doom.d/settings/setup-lsp-julia.el -*- lexical-binding: t; -*-
+;;; ~/.doom.d/settings/setup-lsp-julia.el --- Configure LSP mode for Julia language -*- lexical-binding: t; -*-
 ;;
 ;; Configure LSP for Julia language.
 
