@@ -1,5 +1,21 @@
 ;;; ~/.doom.d/settings/setup-julia-ts-mode.el --- Configure julia-ts-mode -*- lexical-binding: t; -*-
 
+(defun ronisbr/flyspell-julia-ts-mode-verify ()
+  "Verify if a word predicate must have its spell verified in `julia-ts-mode'.
+
+The default algorithm does not work properly using strings because tree-sitter
+decorates a string using a list of faces. This behavior is required to
+highlight, for example, string interpolations. Hence, in a string, the text
+property is `(font-string-lock-face)' that does not match
+`font-string-lock-face' in the default verification algorithm."
+  (unless (eql (point) (point-min))
+    ;; (point) is next char after the word. Must check one char before.
+    (let ((f (ensure-list (get-text-property (1- (point)) 'face))))
+      ;; We must only check the spell if the text has only one decoration,
+      ;; avoiding verifying string interpolations, for example.
+      (when (eq (length f) 1)
+        (memq (car f) flyspell-prog-text-faces)))))
+
 (use-package! julia-ts-mode
   :mode "\\.jl$")
 
@@ -10,6 +26,10 @@
   ;; We need to increase the connection timeout of Eglot to allow enough initialization time
   ;; for the server.
   (setq-hook! 'julia-ts-mode-hook eglot-connect-timeout (max eglot-connect-timeout 120))
+
+  ;; Set the word predicate check function for flyspell.
+  (setq-hook! 'julia-ts-mode-hook
+    flyspell-generic-check-word-predicate #'ronisbr/flyspell-julia-ts-mode-verify)
 
   ;; We must replace epsilon in Julia mode because JetBrainsMono does not have a glyph to
   ;; the lunate version of it that is used by default in Julia.
