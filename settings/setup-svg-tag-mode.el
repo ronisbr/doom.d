@@ -16,35 +16,35 @@
 
                 ;; === TODO keywords =======================================================
 
-                `(("TODO" . ((lambda (tag)
+                `(("^[\\*]* \\(TODO\\)" . ((lambda (tag)
                                (svg-tag-make "TODO"
                                              :face 'org-todo
                                              :inverse t
                                              :margin 0))))
 
-                  ("WAIT" . ((lambda (tag)
+                  ("^[\\*]* \\(WAIT\\)" . ((lambda (tag)
                                (svg-tag-make "WAIT"
                                              :face '+org-todo-onhold
                                              :inverse t
                                              :margin 0))))
 
-                  ("STRT" . ((lambda (tag)
+                  ("^[\\*]* \\(STRT\\)" . ((lambda (tag)
                                (svg-tag-make "STRT"
                                              :face '+org-todo-active
                                              :margin 0))))
 
-                  ("DLGT" . ((lambda (tag)
+                  ("^[\\*]* \\(DLGT\\)" . ((lambda (tag)
                                (svg-tag-make "DLGT"
                                              :face '+org-todo-active
                                              :inverse t
                                              :margin 0))))
 
-                  ("CANC" . ((lambda (tag)
+                  ("^[\\*]* \\(CANC\\)" . ((lambda (tag)
                                (svg-tag-make "CANC"
                                              :face 'org-done
                                              :margin 0))))
 
-                  ("DONE" . ((lambda (tag)
+                  ("^[\\*]* \\(DONE\\)" . ((lambda (tag)
                                (svg-tag-make "DONE"
                                              :face 'org-done
                                              :margin 0))))
