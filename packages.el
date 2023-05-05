@@ -60,5 +60,6 @@
   :recipe (:host github
            :repo "ronisbr/doom-nano-modeline"))
 
-(unpin! julia-mode)
+(package! julia-mode
+  :pin "a20367f2826b26084abd2f403219218813007123")
 (unpin! julia-repl)
