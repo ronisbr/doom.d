@@ -126,6 +126,9 @@ This function performs the following replacements in the string S:
           ("[>]"  . +org-todo-active)
           ("[!]"  . +org-todo-cancel)))
 
+  ;; Do not add tags when attaching files.
+  (setq org-attach-auto-tag nil)
+
   ;; Do not use highlight `@' and `#' using Doom's default pattern.
   (setq doom-themes-org-fontify-special-tags nil)
 
