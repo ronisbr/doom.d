@@ -165,7 +165,7 @@
   (add-hook 'prog-mode-hook #'ronisbr/set-svg-tag-tags-for-prog-mode)
 
   :config
-  (plist-put svg-lib-style-default :font-family "Noto Sans Mono SemiCondensed")
+  (plist-put svg-lib-style-default :font-family "JetBrains Mono NL")
   (plist-put svg-lib-style-default :font-size 13))
 
 (provide 'setup-svg-tag-mode)

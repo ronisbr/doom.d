@@ -1,12 +1,12 @@
 ;;; settings/setup-theme.el --- Configure the theme -*- lexical-binding: t; -*-
 
-(setq doom-font (font-spec :family "Noto Sans Mono SemiCondensed" :size 14)
-      doom-variable-pitch-font (font-spec :family "Noto Sans Mono SemiCondensed" :size 14))
+(setq doom-font (font-spec :family "JetBrains Mono NL" :size 14)
+      doom-variable-pitch-font (font-spec :family "JetBrains Mono NL" :size 14))
 
 ;; For some reason, when using emacs-plus, the greek fonts changes for lines that are not
 ;; selected when starting Julia mode.
 (add-hook! 'after-setting-font-hook
-  (set-fontset-font t 'greek "Noto Sans Mono SemiCondensed")
+  (set-fontset-font t 'unicode "Noto Sans Mono SemiCondensed")
   ;; Some emojis we do not want to use Apple's font.
   (set-fontset-font t ?🅰 "Noto Sans Mono SemiCondensed")
   (set-fontset-font t ?🅱 "Noto Sans Mono SemiCondensed"))
