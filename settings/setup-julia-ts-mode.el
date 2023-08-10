@@ -25,7 +25,7 @@ property is `(font-string-lock-face)' that does not match
 
   ;; We need to increase the connection timeout of Eglot to allow enough initialization time
   ;; for the server.
-  (setq-hook! 'julia-ts-mode-hook eglot-connect-timeout (max eglot-connect-timeout 120))
+  (setq-hook! 'julia-ts-mode-hook eglot-connect-timeout 120)
 
   ;; Set the word predicate check function for flyspell.
   (setq-hook! 'julia-ts-mode-hook
