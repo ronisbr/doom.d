@@ -46,7 +46,6 @@
 (require 'setup-svg-tag-mode)
 (require 'setup-treemacs)
 (require 'setup-treesit-auto)
-(require 'setup-vertico)
 (require 'setup-vterm)
 
 ;; Local packages.
