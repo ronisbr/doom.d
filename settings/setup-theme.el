@@ -9,6 +9,7 @@
 ;; selected when starting Julia mode.
 (add-hook! 'after-setting-font-hook
   (set-fontset-font t 'greek "JetBrains Mono NL")
+  (set-fontset-font t 'emoji "Apple Color Emoji")
   ;; Some emojis we do not want to use Apple's font.
   (set-fontset-font t ?🅰 "Noto Sans Mono SemiCondensed")
   (set-fontset-font t ?🅱 "Noto Sans Mono SemiCondensed"))
